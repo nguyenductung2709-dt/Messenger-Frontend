@@ -1,22 +1,53 @@
 import { useState } from 'react';
 import authenticationService from '../../services/authentication';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAuthContext } from '../../context/AuthContext';
+
 
 const LoginPage = () => {
+    const [loading, setLoading] = useState('');
     const [gmail, setGmail] = useState('');
     const [password, setPassword] = useState('');
+    const { setAuthUser } = useAuthContext();
+
+    function handleInputErrors(gmail, password) {
+        if (!gmail || !password) {
+            toast.error("Please fill in all fields");
+            return false;
+        }
+    
+        return true;
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const userDetails = {
-            gmail,
-            password
+
+        const check = handleInputErrors(gmail, password);
+        if (!check) {return ;}
+        setLoading(true);
+        try {
+            const userDetails = {
+                gmail,
+                password
+            }
+            const user = await authenticationService.login(userDetails);
+            if (user.error) {
+                throw new Error(user.error);
+            }
+            toast.success("You have successfully logged in")
+            localStorage.setItem("loggedInChatUser", JSON.stringify(user));
+            setAuthUser(user);
+        } catch(err) {
+            toast.error(err.message);
         }
-        const user = await authenticationService.login(userDetails);
-        console.log(user);
     };
 
     return (
         <section className="bg-primary_login_dark">
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 
                             bg-secondary_login_dark border-gray-700">
@@ -55,7 +86,7 @@ const LoginPage = () => {
                             </div>
 
                             <button type="submit" className="w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                            bg-blue-500 hover:bg-blue-700 text-white">Sign in</button>
+                            bg-blue-500 hover:bg-blue-700 text-white" disabled = {loading}>{loading ? <span className='loading loading-spinner'></span> : "Sign In"}</button>
 
                             <p className="text-sm font-light text-gray-400">
                                 Need an account? <a href="/register" className="font-medium hover:underline text-white">Sign up</a>

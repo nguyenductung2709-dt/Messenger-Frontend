@@ -1,31 +1,63 @@
 import { useState } from 'react';
 import authenticationService from '../../services/authentication';
+import toast, { Toaster } from 'react-hot-toast';
 
 const RegisterPage = () => {
+    const [loading, setLoading] = useState(false);
     const [gmail, setGmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [avatarImage, setAvatarImage] = useState(null);
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('gmail', gmail);
-        formData.append('password', password);
-        formData.append('firstName', firstName);
-        formData.append('lastName', lastName);
-        formData.append('middleName', middleName);
-        formData.append('dateOfBirth', dateOfBirth);
-        if (avatarImage) {
-            formData.append('avatarImage', avatarImage);
+    function handleInputErrors(gmail, password, confirmPassword, firstName, lastName, middleName, dateOfBirth) {
+        if (!gmail || !password || !confirmPassword || !firstName || !lastName || !middleName || !dateOfBirth) {
+            toast.error("Please fill in all fields");
+            return false;
         }
-        const details = await authenticationService.register(formData);
-        console.log(details);
+        if (password !== confirmPassword) {
+            toast.error("Passwords do not match");
+            return false;
+        }
+        if (password.length < 6) {
+            toast.error("Password must be at least 6 characters long");
+            return false;
+        }
+
+        return true;
+    }
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+    
+        const check = handleInputErrors(gmail, password, confirmPassword, firstName, lastName, middleName, dateOfBirth);
+        if (!check) return;
+    
+        setLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append('gmail', gmail);
+            formData.append('password', password);
+            formData.append('firstName', firstName);
+            formData.append('lastName', lastName);
+            formData.append('middleName', middleName);
+            formData.append('dateOfBirth', dateOfBirth);
+            if (avatarImage) {
+                formData.append('avatarImage', avatarImage);
+            }
+            const details = await authenticationService.register(formData);
+            if (details.error) {
+                throw new Error(details.error);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
+            toast.success("You have successfully create an account")
+        }
     };
 
     const handleAvatarChange = (e) => {
@@ -35,6 +67,10 @@ const RegisterPage = () => {
 
     return (
         <section className="bg-primary_login_dark">
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 
                             bg-secondary_login_dark border-gray-700">
@@ -65,6 +101,20 @@ const RegisterPage = () => {
                                     id="password" 
                                     value={password} 
                                     onChange={(e) => setPassword(e.target.value)} 
+                                    className="border sm:text-sm rounded-lg block w-full p-2.5 bg-third_login_dark border-gray-600 
+                                    placeholder-gray-400 text-white focus:ring-white focus:border-white" 
+                                    placeholder="••••••••" 
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="confirm_password" className="block mb-2 text-sm font-medium text-white">Confirm your password</label>
+                                <input 
+                                    type="password" 
+                                    name="confirm_password" 
+                                    id="confirm_password" 
+                                    value={confirmPassword} 
+                                    onChange={(e) => setConfirmPassword(e.target.value)} 
                                     className="border sm:text-sm rounded-lg block w-full p-2.5 bg-third_login_dark border-gray-600 
                                     placeholder-gray-400 text-white focus:ring-white focus:border-white" 
                                     placeholder="••••••••" 
@@ -139,7 +189,7 @@ const RegisterPage = () => {
                                 />
                             </div>
                             <button type="submit" className="w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                            bg-blue-500 hover:bg-blue-700 text-white">Sign in</button>
+                            bg-blue-500 hover:bg-blue-700 text-white" disabled = {loading}> {loading ? <span className='loading loading-spinner'></span> : "Sign Up"} </button>
 
                             <p className="text-sm font-light text-gray-400">
                                 Already have an account? <a href="/login" className="font-medium hover:underline text-white">Sign in</a>
