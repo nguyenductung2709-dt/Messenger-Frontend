@@ -4,7 +4,7 @@ import RightSide from './right_side/RightSide';
 
 const HomePage = () => {
     return (
-        <div className = "flex flex-row overflow-hidden w-full h-full bg-primary_login_dark">
+        <div className = "flex flex-row overflow-hidden w-full h-full">
             <LeftSide />
             <MessageContainer />
             <RightSide />

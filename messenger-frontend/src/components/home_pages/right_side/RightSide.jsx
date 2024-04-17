@@ -1,7 +1,7 @@
 import NavBar from './NavBar';
 const RightSide = () => {
     return(
-    <div className = "basis-2/10 flex flex-col">
+    <div className = "basis-2/10 flex flex-col bg-secondary_message_dark">
         <NavBar/>
         <div className = "flex flex-col flex-g  items-center justify-center">
         <div className="w-20 rounded-full">

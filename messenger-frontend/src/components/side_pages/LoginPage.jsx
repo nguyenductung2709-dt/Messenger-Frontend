@@ -7,7 +7,7 @@ import { useAuthContext } from '../../context/AuthContext';
 const LoginPage = () => {
     const [loading, setLoading] = useState('');
     const [gmail, setGmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(false);
     const { setAuthUser } = useAuthContext();
 
     function handleInputErrors(gmail, password) {
@@ -15,7 +15,6 @@ const LoginPage = () => {
             toast.error("Please fill in all fields");
             return false;
         }
-    
         return true;
     }
 
@@ -24,7 +23,6 @@ const LoginPage = () => {
 
         const check = handleInputErrors(gmail, password);
         if (!check) {return ;}
-        setLoading(true);
         try {
             const userDetails = {
                 gmail,
@@ -34,11 +32,12 @@ const LoginPage = () => {
             if (user.error) {
                 throw new Error(user.error);
             }
+            setLoading(true);
             toast.success("You have successfully logged in")
             localStorage.setItem("loggedInChatUser", JSON.stringify(user));
             setAuthUser(user);
         } catch(err) {
-            toast.error(err.message);
+            toast.error("Login failed. Please check your credentials");
         }
     };
 

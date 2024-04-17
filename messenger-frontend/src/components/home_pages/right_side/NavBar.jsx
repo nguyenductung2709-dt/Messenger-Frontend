@@ -14,7 +14,7 @@ const NavBar = () => {
             localStorage.removeItem("loggedInChatUser");
             setAuthUser(null);
         } catch (err) {
-            console.log(err)
+            throw new Error(err);
         }
     }
     return (
@@ -23,7 +23,7 @@ const NavBar = () => {
             <div className="basis-1/3 flex flex-col items-center justify-center rounded-full">
                 <img className="w-10 rounded-full" alt="Tailwind CSS chat bubble component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
-            <button onClick={handleLogout}><BiLogOut size={35} className="basis-1/3" /></button>
+            <button className="basis-1/3 flex flex-col items-center" onClick={handleLogout}><BiLogOut size={35} /></button>
         </div>
     )
 }
