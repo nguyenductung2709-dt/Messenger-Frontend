@@ -13,7 +13,17 @@ export default {
         secondary_login_dark: '#191b29',
         third_login_dark: '#323441',
       },
+      flexBasis: {
+        '1/10': '10%',
+        '2/10': '20%',
+        '6/10': '60%',
+        '7/10': '70%',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '1.5': '1.5px',
+      }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

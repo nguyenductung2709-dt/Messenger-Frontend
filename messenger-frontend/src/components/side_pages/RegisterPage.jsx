@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import authenticationService from '../services/authentication';
+import authenticationService from '../../services/authentication';
 
 const RegisterPage = () => {
     const [gmail, setGmail] = useState('');

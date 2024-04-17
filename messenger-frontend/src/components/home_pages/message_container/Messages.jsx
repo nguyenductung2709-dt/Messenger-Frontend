@@ -1,0 +1,19 @@
+import Message from './Message';
+
+const Messages = () => {
+    return (
+        <div className = "px-4 h-screen flex-1 overflow-y-auto">
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+        </div>
+    )
+}
+
+export default Messages;
