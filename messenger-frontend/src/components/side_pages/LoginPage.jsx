@@ -7,7 +7,7 @@ import { useAuthContext } from '../../context/AuthContext';
 const LoginPage = () => {
     const [loading, setLoading] = useState('');
     const [gmail, setGmail] = useState('');
-    const [password, setPassword] = useState(false);
+    const [password, setPassword] = useState('');
     const { setAuthUser } = useAuthContext();
 
     function handleInputErrors(gmail, password) {
