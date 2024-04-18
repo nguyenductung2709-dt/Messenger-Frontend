@@ -1,17 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
+import { changeSelectedConversation } from "../../../reducers/conversationReducer";
+
 const Conversation = ({ conversation, currentUser }) => {
+    let userUsed;
 
-	let userUsed;
+    if (conversation.participant_list.length === 2) {
+        userUsed = conversation.participant_list.find(participant => participant.id !== currentUser.id);
+    }
 
-	if (conversation.participant_list.length === 2) {
-		userUsed = conversation.participant_list.find(participant => participant.id !== currentUser.id);
-	}
-
-	console.log(userUsed);
+    const selectedConversation = useSelector(state => state.selectedConversation);
+    const isSelected = selectedConversation?.id === conversation.id;
+    const dispatch = useDispatch();
 
     return (
         <>
             {conversation.participant_list.length === 2 ?
-                <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
+                <div className={`flex gap-2 items-center hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
+                    ${isSelected ? "bg-gray-600" : ""}
+                `} onClick={() => dispatch(changeSelectedConversation(conversation))}
+                >
                     <div className='avatar online'>
                         <div className='w-12 rounded-full'>
                             <img
