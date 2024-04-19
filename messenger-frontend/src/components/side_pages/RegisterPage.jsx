@@ -56,6 +56,14 @@ const RegisterPage = () => {
             toast.error(error.message);
         } finally {
             setLoading(false);
+            setGmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setFirstName('');
+            setMiddleName('');
+            setLastName('');
+            setDateOfBirth('');
+            setAvatarImage(null);
             toast.success("You have successfully create an account")
         }
     };

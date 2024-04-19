@@ -15,6 +15,7 @@ export default {
         primary_message_dark: '#36393e',
         secondary_message_dark: '#282b30',
         third_message_dark: '#7289da',
+        chat_background: '#3B3B3B',
       },
       flexBasis: {
         '1/10': '10%',
@@ -26,7 +27,7 @@ export default {
       },
       borderWidth: {
         DEFAULT: '1px',
-        '1.5': '1.5px',
+        '1.2': '1.2px',
       }
     },
   },

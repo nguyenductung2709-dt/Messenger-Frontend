@@ -33,7 +33,6 @@ const LoginPage = () => {
                 throw new Error(user.error);
             }
             setLoading(true);
-            toast.success("You have successfully logged in")
             localStorage.setItem("loggedInChatUser", JSON.stringify(user));
             setAuthUser(user);
         } catch(err) {
