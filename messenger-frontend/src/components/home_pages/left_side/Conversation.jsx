@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedConversation } from "../../../reducers/conversationReducer";
+import { useSocketContext } from "../../../context/SocketContext";
 import bigThree from '../../../assets/default_group.jpeg';
 
 const Conversation = ({ conversation, currentUser }) => {
@@ -11,9 +12,12 @@ const Conversation = ({ conversation, currentUser }) => {
 
     const selectedConversation = useSelector(state => state.selectedConversation);
     const isSelected = selectedConversation?.id === conversation.id;
+    const { onlineUsers } = useSocketContext();
     const dispatch = useDispatch();
     const conversationImage = conversation.imageName || bigThree;
-
+    console.log(userUsed);
+    console.log(onlineUsers);
+    const isOnline = userUsed && onlineUsers.includes(String(userUsed.id));
     return (
         <>
             {conversation.participant_list.length === 2 ?
@@ -21,7 +25,7 @@ const Conversation = ({ conversation, currentUser }) => {
                     ${isSelected ? "bg-gray-600" : ""}
                 `} onClick={() => dispatch(changeSelectedConversation(conversation))}
                 >
-                    <div className='avatar online'>
+	                <div className={`avatar ${isOnline ? "online" : ""}`}>
                         <div className='w-12 rounded-full'>
                             <img
                                 src={userUsed.avatarName}

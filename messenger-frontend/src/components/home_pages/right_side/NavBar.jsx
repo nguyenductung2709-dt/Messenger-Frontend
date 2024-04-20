@@ -121,7 +121,7 @@ const NavBar = () => {
                 </label>
 
                 {dropdownVisible && (
-                    <div className="absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700">
+                    <div className="z-20 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700">
                         <p className = "text-white text-xl border-none"> Select friends </p>
                         <p className = "text-white text-sm border-none"> You need to add at least 2 friends </p>
                         <div className = "border-none">

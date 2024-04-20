@@ -4,12 +4,14 @@ import { toast } from 'react-hot-toast';
 import Message from './Message';
 import messageService from '../../../services/messages';
 import { changeMessages } from '../../../reducers/messageReducer';
+import useListenMessages from '../../../hooks/useListenMessages';
 
 const Messages = () => {
     const [loading, setLoading] = useState(false);
     const messages = useSelector(state => state.messages);
     const selectedConversation = useSelector(state => state.selectedConversation);
     const dispatch = useDispatch();
+    useListenMessages();
     const lastMessageRef = useRef();
 
 

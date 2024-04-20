@@ -2,12 +2,14 @@ import NavBar from './NavBar';
 import { useSelector } from 'react-redux';
 import { useAuthContext } from '../../../context/AuthContext';
 import { useState, useEffect } from 'react';
+import MemberList from './MemberList';
 import bigThree from '../../../assets/default_group.jpeg';
 
 const RightSide = () => {
     const { authUser } = useAuthContext();
     const selectedConversation = useSelector(state => state.selectedConversation);
     const isInbox = selectedConversation?.participant_list.length === 2;
+    const isGroup = selectedConversation?.participant_list.length > 2;
     const groupTitle = selectedConversation?.title
     const groupImage = selectedConversation?.imageName || bigThree;
     const [userUsed, setUserUsed] = useState(null);
@@ -41,7 +43,9 @@ const RightSide = () => {
                 <p>{groupTitle}</p>
             </>
         )}
+        
         </div>
+        { isGroup && <MemberList selectedConversation = {selectedConversation}/> }
     </div>
     )
 }
