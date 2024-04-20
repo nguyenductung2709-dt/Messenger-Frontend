@@ -2,13 +2,14 @@ import NavBar from './NavBar';
 import { useSelector } from 'react-redux';
 import { useAuthContext } from '../../../context/AuthContext';
 import { useState, useEffect } from 'react';
+import bigThree from '../../../assets/default_group.jpeg';
 
 const RightSide = () => {
     const { authUser } = useAuthContext();
     const selectedConversation = useSelector(state => state.selectedConversation);
     const isInbox = selectedConversation?.participant_list.length === 2;
     const groupTitle = selectedConversation?.title
-    const groupImage = selectedConversation?.imageName
+    const groupImage = selectedConversation?.imageName || bigThree;
     const [userUsed, setUserUsed] = useState(null);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const RightSide = () => {
         } else {
             setUserUsed(null);
         }
-    }, [selectedConversation, authUser]);
+    }, [selectedConversation, authUser, isInbox]);
 
     return(
     <div className = "basis-2/10 flex flex-col bg-secondary_message_dark">

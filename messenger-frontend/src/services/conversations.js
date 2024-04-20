@@ -1,6 +1,12 @@
 import axios from 'axios'
 const baseUrl = "/api/conversations"
 
+let token = null;
+
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`; 
+}
+
 const getConversations = async() => {
     const res = await axios.get(baseUrl);
     return res.data
@@ -12,4 +18,12 @@ const getConversationById = async(id) => {
     return res.data;
 }
 
-export default {getConversations, getConversationById}
+const createConversation = async(credentials) => {
+    const config = {
+        headers: { Authorization: token },
+      };
+      const response = await axios.post(baseUrl, credentials, config); 
+      return response.data;
+}
+
+export default {setToken, getConversations, getConversationById, createConversation}

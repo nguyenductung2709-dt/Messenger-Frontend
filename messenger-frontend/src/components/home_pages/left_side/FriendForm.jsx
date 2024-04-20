@@ -6,6 +6,7 @@ import conversationService from '../../../services/conversations'
 import userService from '../../../services/users'
 import { useDispatch } from 'react-redux';
 import { changeConversations } from '../../../reducers/conversationsReducer';
+import { changeFriends } from '../../../reducers/friendReducer';
 
 const FriendForm = ({ onClose, showNotification }) => { 
 
@@ -23,6 +24,8 @@ const FriendForm = ({ onClose, showNotification }) => {
                 userId: authUser.id
             }
             await friendService.addFriend(newFriend);
+            const friends = await friendService.getFriendsById(authUser.id);
+            dispatch(changeFriends(friends));
             
             const currentUserInfo = await userService.getUserById(authUser.id);
             const conversationIds = currentUserInfo.conversation.map(singleConversation => singleConversation.id);
@@ -30,6 +33,7 @@ const FriendForm = ({ onClose, showNotification }) => {
             const filteredConversations = allConversations.filter(conversation => {
                 return conversationIds.includes(conversation.id);
             });
+
             dispatch(changeConversations(filteredConversations))
 
             showNotification(true, "Friend added successfully"); 

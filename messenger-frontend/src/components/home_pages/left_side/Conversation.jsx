@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedConversation } from "../../../reducers/conversationReducer";
+import bigThree from '../../../assets/default_group.jpeg';
 
 const Conversation = ({ conversation, currentUser }) => {
     let userUsed;
@@ -11,6 +12,7 @@ const Conversation = ({ conversation, currentUser }) => {
     const selectedConversation = useSelector(state => state.selectedConversation);
     const isSelected = selectedConversation?.id === conversation.id;
     const dispatch = useDispatch();
+    const conversationImage = conversation.imageName || bigThree;
 
     return (
         <>
@@ -43,7 +45,7 @@ const Conversation = ({ conversation, currentUser }) => {
                     <div className='avatar online'>
                         <div className='w-12 rounded-full'>
                             <img
-                                src={conversation.imageName}
+                                src={conversationImage}
                                 alt='user avatar'
                             />
                         </div>

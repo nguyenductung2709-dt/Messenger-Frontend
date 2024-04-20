@@ -7,6 +7,12 @@ const setToken = (newToken) => {
     token = `bearer ${newToken}`; 
 }
 
+const getFriendsById = async(id) => {
+    const getUrl = baseUrl + `/${id}`
+    const response = await axios.get(getUrl);
+    return response.data;
+}
+
 const addFriend = async(credentials) => {
     const config = {
         headers: { Authorization: token },
@@ -15,4 +21,4 @@ const addFriend = async(credentials) => {
     return response.data;
 }
 
-export default { setToken, addFriend }
+export default { setToken, addFriend, getFriendsById }
