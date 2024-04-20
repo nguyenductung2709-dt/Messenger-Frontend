@@ -1,0 +1,18 @@
+import axios from 'axios';
+const baseUrl = "/api/friends"
+
+let token = null;
+
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`; 
+}
+
+const addFriend = async(credentials) => {
+    const config = {
+        headers: { Authorization: token },
+      };
+    const response = await axios.post(baseUrl, credentials, config); 
+    return response.data;
+}
+
+export default { setToken, addFriend }

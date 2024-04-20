@@ -32,10 +32,12 @@ const Messages = () => {
     }, [selectedConversation?.id, dispatch]);
 
     useEffect(() => {
-		setTimeout(() => {
-			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-		});
-	}, [messages]);
+        if (messages.length > 0) {
+            setTimeout(() => {
+                lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+        }
+    }, [messages]);
 
     return (
         <div className='px-4 flex-1 overflow-auto'>

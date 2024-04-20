@@ -7,8 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const LeftSide = () => {
     const [friendForm, setFriendForm] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [message, setMessage] = useState('');
+    const [notification, setNotification] = useState(null); 
 
     const openFriendForm = () => {
         setFriendForm(true);
@@ -16,8 +15,14 @@ const LeftSide = () => {
 
     const closeFriendForm = () => {
         setFriendForm(false);
-        console.log('siu')
-        toast.success("Friend added successfully");
+    }
+
+    const showNotification = (success, message) => {
+        if (success) {
+            toast.success(message);
+        } else {
+            toast.error(message);
+        }
     }
 
     return (
@@ -27,7 +32,10 @@ const LeftSide = () => {
                 reverseOrder={false}
             />
             {friendForm ? 
-                <FriendForm onClose={closeFriendForm} setSuccess = {setSuccess} setMessage = {setMessage}/> :
+                <FriendForm
+                    onClose={closeFriendForm}
+                    showNotification={showNotification} 
+                /> :
                 <div className="px-4 py-2 mb-2">
                     <h1 className="text-white text-2xl mb-4 mt-2"> Conversations </h1>
                     <button onClick={openFriendForm}><MdOutlineOpenInNew className="text-white text-2xl absolute right-4 top-4 cursor-pointer" size={34} /></button>
