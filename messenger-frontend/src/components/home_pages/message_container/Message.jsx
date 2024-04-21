@@ -36,6 +36,7 @@ const Message = ({ message }) => {
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
   const fileUrl = message.fileUrl;
   const imageUrl = message.imageUrl;
+  console.log(message);
 
   return (
     <div className={`chat ${chatClassName}`}>

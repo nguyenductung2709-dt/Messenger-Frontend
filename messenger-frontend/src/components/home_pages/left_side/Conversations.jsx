@@ -3,6 +3,7 @@ import { useAuthContext } from "../../../context/AuthContext";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeConversations } from "../../../reducers/conversationsReducer";
+import useListenConversations from "../../../hooks/useListenConversations";
 import userService from "../../../services/users";
 import conversationService from "../../../services/conversations";
 
@@ -10,6 +11,7 @@ const Conversations = () => {
   const { authUser } = useAuthContext();
 
   const dispatch = useDispatch();
+  useListenConversations();
 
   useEffect(() => {
     const fetchConversations = async () => {
