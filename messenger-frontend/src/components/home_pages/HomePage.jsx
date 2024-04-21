@@ -1,15 +1,15 @@
-import LeftSide from './left_side/LeftSide';
-import MessageContainer from './message_container/MessageContainer';
-import RightSide from './right_side/RightSide';
+import LeftSide from "./left_side/LeftSide";
+import MessageContainer from "./message_container/MessageContainer";
+import RightSide from "./right_side/RightSide";
 
 const HomePage = () => {
-    return (
-        <div className = "flex flex-row overflow-hidden w-full h-full">
-            <LeftSide />
-            <MessageContainer />
-            <RightSide />
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-row overflow-hidden w-full h-full">
+      <LeftSide />
+      <MessageContainer />
+      <RightSide />
+    </div>
+  );
+};
 
 export default HomePage;

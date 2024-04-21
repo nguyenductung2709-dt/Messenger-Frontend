@@ -5,7 +5,7 @@ let token = null;
 
 const setToken = (newToken) => {
   token = `bearer ${newToken}`;
-}
+};
 
 const login = async (credentials) => {
   const loginUrl = baseUrl + "/login";
@@ -23,7 +23,7 @@ const logout = async () => {
     headers: { Authorization: token },
   };
   const logoutUrl = baseUrl + "/logout";
-  const response = await axios.post(logoutUrl, null, config); 
+  const response = await axios.post(logoutUrl, null, config);
   return response.data;
 };
 
