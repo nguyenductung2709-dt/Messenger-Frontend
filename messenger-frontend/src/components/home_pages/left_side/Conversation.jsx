@@ -19,8 +19,6 @@ const Conversation = ({ conversation, currentUser }) => {
   const { onlineUsers } = useSocketContext();
   const dispatch = useDispatch();
   const conversationImage = conversation.imageName || bigThree;
-  console.log(userUsed);
-  console.log(onlineUsers);
   const isOnline = userUsed && onlineUsers.includes(String(userUsed.id));
   return (
     <>
