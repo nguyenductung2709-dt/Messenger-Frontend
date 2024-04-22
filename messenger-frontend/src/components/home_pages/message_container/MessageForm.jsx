@@ -72,7 +72,7 @@ const MessageForm = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="text-sm block w-full p-2.5 text-white"
+            className="text-sm block w-full p-2.5 text-white bg-gray-700"
             placeholder="Send a message"
           />
           <div className="absolute inset-y-0 end-20 flex items-center pl-3">
@@ -119,7 +119,7 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
   };
 
   return (
-    <div className="h-1/5 flex flex-col justify-center bg-chat_background border-b-1.2 border-gray-500 relative">
+    <div className="h-1/5 flex flex-col justify-center bg-gray-700 border-b-1.2 border-gray-500 relative">
       {messageImage.type.includes("image") ? (
         <img
           className="w-52 max-h-40"
@@ -127,7 +127,7 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
           alt="messageImage"
         />
       ) : (
-        <div className="flex flex-col gap-10 h-40 w-40 rounded-lg bg-gray-900 items-center">
+        <div className="flex flex-col gap-10 h-40 w-40 rounded-lg bg-gray-700 items-center">
           <AiFillFilePdf size={100} />
           <p className="text-white text-sm">
             {messageImage.name.length > 20

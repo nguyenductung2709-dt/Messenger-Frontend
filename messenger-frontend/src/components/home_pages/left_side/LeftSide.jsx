@@ -35,11 +35,11 @@ const LeftSide = () => {
         />
       ) : (
         <div className="px-4 py-2 mb-2">
-          <h1 className="text-white text-2xl mb-4 mt-2"> Conversations </h1>
+          <h1 className="text-white text-2xl mt-2"> Conversations </h1>
           <button onClick={openFriendForm}>
             <MdOutlineOpenInNew
               className="text-white text-2xl absolute right-4 top-4 cursor-pointer"
-              size={34}
+              size={"1.3em"}
             />
           </button>
           <SearchBar />

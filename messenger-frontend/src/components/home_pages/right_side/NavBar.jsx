@@ -1,5 +1,3 @@
-import { BsSun } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
 import { GrGroup } from "react-icons/gr";
 
 import { useState, useEffect } from "react";
@@ -140,7 +138,7 @@ const NavBar = () => {
           htmlFor="dropdownCheckbox"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          <GrGroup size={35} />
+          <GrGroup size={'2.5em'} />
         </label>
 
         {dropdownVisible && (
@@ -194,13 +192,6 @@ const NavBar = () => {
             >
               {" "}
               Form Group{" "}
-            </button>
-            <button
-              className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-500 hover:bg-red-700 text-white mt-2"
-              onClick={handleLogout}
-            >
-              {" "}
-              Logout{" "}
             </button>
           </div>
         )}

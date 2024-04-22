@@ -45,14 +45,14 @@ const FriendForm = ({ onClose, showNotification }) => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full">
       <form className="px-4 py-2 mb-2" onSubmit={handleFriend}>
         <input
           type="text"
           name="gmail"
           value={gmail}
           onChange={(e) => setGmail(e.target.value)}
-          className="w-full rounded-lg h-10 text-white"
+          className="w-full rounded-lg h-12 text-white"
           placeholder="Add friends by gmail"
           required
         />
