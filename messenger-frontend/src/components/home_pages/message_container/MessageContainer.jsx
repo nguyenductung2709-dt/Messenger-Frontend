@@ -35,16 +35,14 @@ const MessageContainer = () => {
       <div className="bg-gray-600 px-4 py-2 mb-2">
         <span className="label-text"> To: </span>{" "}
         {isInbox ? (
-          <span className="text-white font-bold">
+          <span className="text-white">
             {" "}
             <span>{userUsed.middleName} </span>
             <span>{userUsed.firstName} </span>
             <span>{userUsed.lastName}</span>
           </span>
         ) : (
-          <span className="text-white font-bold">
-            {selectedConversation.title}
-          </span>
+          <span className="text-white">{selectedConversation.title}</span>
         )}
       </div>
       <Messages />

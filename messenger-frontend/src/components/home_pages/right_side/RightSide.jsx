@@ -38,8 +38,7 @@ const RightSide = () => {
               alt="Tailwind CSS chat bubble component"
               src={userUsed.avatarName}
             />
-            <p>
-              {" "}
+            <p className="text-white mt-2">
               {userUsed.middleName} {userUsed.firstName} {userUsed.lastName}{" "}
             </p>
           </>
@@ -54,7 +53,7 @@ const RightSide = () => {
               src={groupImage}
               alt={`${groupTitle} image`}
             />
-            <p>{groupTitle}</p>
+            <p className="text-white mt-2">{groupTitle}</p>
           </>
         )}
       </div>

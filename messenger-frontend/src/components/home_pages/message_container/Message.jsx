@@ -78,7 +78,7 @@ const Message = ({ message }) => {
 
       {imageUrl ? (
         <div className="chat-footer text-xs flex gap-1 items-center mb-4">
-          <img className="w-52 max-h-40" src={imageUrl} alt="messageImage" />
+          <img className="w-52 h-auto" src={imageUrl} alt="messageImage" />
         </div>
       ) : (
         <></>
