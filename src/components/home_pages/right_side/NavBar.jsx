@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../../../context/AuthContext";
 import { changeFriends } from "../../../reducers/friendReducer";
 import { changeConversations } from "../../../reducers/conversationsReducer";
+import useDarkMode from '../../../hooks/useDarkMode';
+
 
 import useListenFriends from "../../../hooks/useListenFriends";
 import authenticationService from "../../../services/authentication";
@@ -22,6 +24,9 @@ const NavBar = () => {
   const { authUser, setAuthUser } = useAuthContext();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [title, setTitle] = useState("");
+  const [darkTheme, setDarkTheme] = useDarkMode();
+
+  const handleMode = () => setDarkTheme(!darkTheme);
 
   const dispatch = useDispatch();
   const friends = useSelector((state) => state.friends);
@@ -107,7 +112,7 @@ const NavBar = () => {
 
       <label className="swap swap-rotate basis-1/3">
         {/* this hidden checkbox controls the state */}
-        <input type="checkbox" />
+        <input type="checkbox" onClick = {handleMode}/>
 
         {/* sun icon */}
         <svg

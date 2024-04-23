@@ -22,7 +22,7 @@ const AvatarDropdown = ({
         </label>
 
         {avatarDropdownVisible && (
-          <div className="w-52 z-20 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+          <div className="w-52 z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow bg-gray-700">
             <div className="w-full">
               <p className="text-white text-base font-medium mb-8 w-full">
                 {user.firstName} {user.middleName} {user.lastName}
