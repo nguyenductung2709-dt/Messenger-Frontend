@@ -1,5 +1,3 @@
-import { GrGroup } from "react-icons/gr";
-
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../../../context/AuthContext";
