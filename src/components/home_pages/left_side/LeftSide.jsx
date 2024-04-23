@@ -26,7 +26,7 @@ const LeftSide = () => {
   };
 
   return (
-    <div className="basis-2/10 flex flex-col h-screen overflow-y-auto relative bg-secondary_message_dark">
+    <div className="basis-2/10 flex flex-col h-screen overflow-y-auto relative bg-amber-300 dark:bg-secondary_message_dark">
       <Toaster position="top-center" reverseOrder={false} />
       {friendForm ? (
         <FriendForm
@@ -35,13 +35,13 @@ const LeftSide = () => {
         />
       ) : (
         <div className="px-4 py-2 mb-2">
-          <h1 className="text-white text-2xl mt-2 font-semibold">
+          <h1 className="text-black dark:text-white text-2xl mt-2 font-semibold">
             {" "}
             Conversations{" "}
           </h1>
           <button onClick={openFriendForm}>
             <MdOutlineOpenInNew
-              className="text-white text-2xl absolute right-4 top-4 cursor-pointer"
+              className="text-black dark:text-white text-2xl absolute right-4 top-4 cursor-pointer"
               size={"1.3em"}
             />
           </button>

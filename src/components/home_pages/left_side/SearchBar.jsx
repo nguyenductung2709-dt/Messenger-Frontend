@@ -52,13 +52,13 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="input input-bordered rounded-full w-full h-10 focus:outline-none focus:ring focus:border-blue-500"
+            className="text-black dark:text-white bg-white dark:bg-black input input-bordered rounded-full w-full h-10 focus:outline-none focus:ring focus:border-blue-500"
             value={conversationName}
             onChange={(e) => setConversationName(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-sm py-1 px-2 rounded-full focus:outline-none focus:ring focus:border-blue-500"
+            className="bg-cyan-500 hover:bg-cyan-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-sm py-1 px-2 rounded-full focus:outline-none focus:ring focus:border-blue-500"
           >
             Enter
           </button>

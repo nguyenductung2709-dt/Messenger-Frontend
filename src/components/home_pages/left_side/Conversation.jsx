@@ -24,9 +24,9 @@ const Conversation = ({ conversation, currentUser }) => {
     <>
       {conversation.participant_list.length === 2 ? (
         <div
-          className={`flex gap-2 items-center hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                    ${isSelected ? "bg-gray-600" : ""}
-                `}
+          className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
+                  ${isSelected ? "bg-orange-400 dark:bg-gray-600" : ""}
+          `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >
           <div className={`avatar ${isOnline ? "online" : ""}`}>
@@ -37,7 +37,7 @@ const Conversation = ({ conversation, currentUser }) => {
 
           <div className="flex flex-col flex-1">
             <div className="flex gap-3 justify-between">
-              <p className="text-white">
+              <p className="text-black dark:text-white">
                 <span>{userUsed.middleName} </span>
                 <span>{userUsed.firstName} </span>
                 <span>{userUsed.lastName}</span>
@@ -47,8 +47,8 @@ const Conversation = ({ conversation, currentUser }) => {
         </div>
       ) : (
         <div
-          className={`flex gap-2 items-center hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                    ${isSelected ? "bg-gray-600" : ""}
+          className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
+                  ${isSelected ? "bg-orange-400 dark:bg-gray-600" : ""}
                 `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >
@@ -60,7 +60,7 @@ const Conversation = ({ conversation, currentUser }) => {
 
           <div className="flex flex-col flex-1">
             <div className="flex gap-3 justify-between">
-              <p className="text-white"> {conversation.title} </p>
+              <p className="text-black dark:text-white"> {conversation.title} </p>
             </div>
           </div>
         </div>

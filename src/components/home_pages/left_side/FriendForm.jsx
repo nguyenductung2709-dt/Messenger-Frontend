@@ -52,14 +52,14 @@ const FriendForm = ({ onClose, showNotification }) => {
           name="gmail"
           value={gmail}
           onChange={(e) => setGmail(e.target.value)}
-          className="w-full rounded-lg h-12 text-white"
+          className="w-full rounded-lg h-12 text-black dark:text-black bg-white dark:bg-black"
           placeholder="Add friends by gmail"
           required
         />
         <button
           type="submit"
-          className="w-full focus:ring-4 font-medium rounded-lg text-lg px-5 py-2.5 text-center 
-                            bg-blue-500 hover:bg-blue-700 text-white"
+          className="w-full focus:ring-4 font-medium rounded-lg text-lg px-5 py-2.5 text-center text-white
+                    bg-cyan-500 hover:bg-cyan-700 dark:bg-blue-600 dark:hover:bg-blue-800"
         >
           Add friend
         </button>
