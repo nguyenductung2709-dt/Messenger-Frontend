@@ -33,7 +33,7 @@ const Message = ({ message }) => {
   );
   const profilePic = participant?.user.avatarName || "";
   const firstName = participant?.user.firstName;
-  const bubbleBgColor = fromMe ? "bg-blue-500" : "";
+  const bubbleBgColor = fromMe ? "bg-orange-300 dark:bg-blue-500" : "bg-rose-400 dark:bg-indigo-700";
   const fileUrl = message.fileUrl;
   const imageUrl = message.imageUrl;
   console.log(message);
@@ -45,13 +45,13 @@ const Message = ({ message }) => {
           <img alt="Tailwind CSS chat bubble component" src={profilePic} />
         </div>
       </div>
-      <div className="chat-header">
+      <div className="chat-header text-black dark:text-white">
         {firstName}
         <time className="text-xs opacity-50"> {formattedTime}</time>
       </div>
 
       {message.message !== "" && (
-        <div className={`chat-bubble text-white ${bubbleBgColor} pb-2`}>
+        <div className={`chat-bubble text-black dark:text-white ${bubbleBgColor} pb-2`}>
           {message.message}
         </div>
       )}
