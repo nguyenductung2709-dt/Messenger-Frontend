@@ -20,17 +20,18 @@ const GroupFormation = ({
       />
       <label
         htmlFor="dropdownCheckbox"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+        className="text-white bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                      dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
       >
         <GrGroup size={"2.1em"} />
       </label>
 
       {dropdownVisible && (
-        <div className="z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow w-72 dark:bg-gray-700 bg-white">
-          <p className="text-white text-2xl border-none px-4 py-2 font-bold">
+        <div className="z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow w-72 dark:bg-gray-700 bg-amber-100">
+          <p className="text-black dark:text-white text-2xl border-none px-4 py-2 font-bold">
             Select friends
           </p>
-          <p className="text-white text-base border-none px-4 py-1">
+          <p className="text-black dark:text-white text-base border-none px-4 py-1">
             Add at least 2 friends
           </p>
           <div className="px-4 py-2 border-none">
@@ -40,8 +41,8 @@ const GroupFormation = ({
               id="password"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border sm:text-sm rounded-lg block w-full p-2.5 bg-third_login_dark border-gray-600 
-                            placeholder-gray-400 text-white focus:ring-white focus:border-white"
+              className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-black bg-white border-none dark:border-gray-600 
+                            placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
               placeholder="Title for the group"
               required
             />
@@ -50,7 +51,7 @@ const GroupFormation = ({
             {friends.map((friend) => (
               <li
                 key={friend.id}
-                className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white border-none cursor-pointer"
+                className="flex items-center justify-between px-4 py-2 hover:bg-amber-200 dark:hover:bg-gray-600 dark:hover:text-white border-none cursor-pointer"
                 onClick={() => handleSelectUser(friend.user.id)}
               >
                 <div className="flex items-center flex-grow">
@@ -74,7 +75,8 @@ const GroupFormation = ({
             ))}
           </ul>
           <button
-            className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-500 hover:bg-blue-700 text-white"
+            className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-500 dark:hover:bg-blue-700 text-white
+                      dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
             onClick={handleFormGroup}
           >
             Form Group

@@ -25,7 +25,7 @@ const Conversation = ({ conversation, currentUser }) => {
       {conversation.participant_list.length === 2 ? (
         <div
           className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                  ${isSelected ? "bg-orange-400 dark:bg-gray-600" : ""}
+                  ${isSelected ? "bg-gradient-to-r from-rose-500 to-yellow-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
           `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >
@@ -48,8 +48,8 @@ const Conversation = ({ conversation, currentUser }) => {
       ) : (
         <div
           className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                  ${isSelected ? "bg-orange-400 dark:bg-gray-600" : ""}
-                `}
+                  ${isSelected ? "bg-gradient-to-r from-rose-500 to-yellow-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
+          `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >
           <div className="avatar online">

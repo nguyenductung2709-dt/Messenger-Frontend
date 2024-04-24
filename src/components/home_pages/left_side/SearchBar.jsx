@@ -58,7 +58,8 @@ const SearchBar = () => {
           />
           <button
             type="submit"
-            className="bg-cyan-500 hover:bg-cyan-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-sm py-1 px-2 rounded-full focus:outline-none focus:ring focus:border-blue-500"
+            className="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-sm py-1 px-2 rounded-full focus:outline-none focus:ring focus:border-blue-500
+                        dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
           >
             Enter
           </button>

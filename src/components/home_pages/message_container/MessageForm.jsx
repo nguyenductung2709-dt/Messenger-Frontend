@@ -66,13 +66,13 @@ const MessageForm = () => {
           onDeleteFile={deleteFileChange}
         />
       )}
-      <form className="mb-3 w-full" onSubmit={handleSubmit}>
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="w-full relative">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="text-sm block w-full p-2.5 text-white bg-gray-700"
+            className="text-sm block w-full p-2.5 text-black dark:text-white bg-orange-300 dark:bg-gray-700 h-11"
             placeholder="Send a message"
           />
           <div className="absolute inset-y-0 end-20 flex items-center pl-3">
@@ -129,7 +129,7 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
       ) : (
         <div className="flex flex-col gap-10 h-40 w-40 rounded-lg bg-gray-700 items-center">
           <AiFillFilePdf size={100} />
-          <p className="text-white text-sm">
+          <p className="text-black dark:text-white text-sm">
             {messageImage.name.length > 20
               ? `${messageImage.name.substring(0, 20)}...`
               : messageImage.name}

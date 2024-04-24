@@ -28,17 +28,17 @@ const RightSide = () => {
   }, [selectedConversation, authUser, isInbox]);
 
   return (
-    <div className="basis-2/10 flex flex-col bg-secondary_message_dark">
+    <div className="basis-2/10 flex flex-col bg-amber-200 dark:bg-secondary_message_dark shadow-sm shadow-orange-500 dark:shadow-white">
       <NavBar />
       <div className="flex flex-col flex-g  items-center justify-center">
         {userUsed ? (
           <>
             <img
-              className="w-28 h-28 rounded-full"
+              className="w-28 h-28 rounded-full shadow-md shadow-white"
               alt="Tailwind CSS chat bubble component"
               src={userUsed.avatarName}
             />
-            <p className="text-white mt-2">
+            <p className="text-black dark:text-white mt-2">
               {userUsed.middleName} {userUsed.firstName} {userUsed.lastName}{" "}
             </p>
           </>
@@ -49,11 +49,11 @@ const RightSide = () => {
         {groupTitle && (
           <>
             <img
-              className="w-28 h-28 rounded-full"
+              className="w-28 h-28 rounded-full shadow-md shadow-white"
               src={groupImage}
               alt={`${groupTitle} image`}
             />
-            <p className="text-white mt-2">{groupTitle}</p>
+            <p className="text-black dark:text-white mt-2">{groupTitle}</p>
           </>
         )}
       </div>
