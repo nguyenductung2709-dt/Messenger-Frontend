@@ -24,8 +24,8 @@ const Conversation = ({ conversation, currentUser }) => {
     <>
       {conversation.participant_list.length === 2 ? (
         <div
-          className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                  ${isSelected ? "bg-gradient-to-r from-rose-500 to-yellow-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
+          className={`flex gap-2 items-center hover:bg-rose-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
+                  ${isSelected ? "bg-gradient-to-r from-rose-300 to-pink-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
           `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >
@@ -47,8 +47,8 @@ const Conversation = ({ conversation, currentUser }) => {
         </div>
       ) : (
         <div
-          className={`flex gap-2 items-center hover:bg-orange-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
-                  ${isSelected ? "bg-gradient-to-r from-rose-500 to-yellow-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
+          className={`flex gap-2 items-center hover:bg-rose-400 dark:hover:bg-gray-600 rounded p-2 py-1 cursor-pointer
+                  ${isSelected ? "bg-gradient-to-r from-rose-300 to-pink-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800" : ""}
           `}
           onClick={() => dispatch(changeSelectedConversation(conversation))}
         >

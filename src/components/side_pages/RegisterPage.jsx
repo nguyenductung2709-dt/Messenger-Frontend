@@ -104,7 +104,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className= "dark:bg-primary_login_dark bg-amber-300">
+    <section className= "dark:bg-primary_login_dark bg-rose-300">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-6">
       <label className="swap absolute top-10 right-40">
@@ -117,8 +117,8 @@ const RegisterPage = () => {
         </span>
       </label>
         <div
-          className="w-full rounded-lg shadow-2xl shadow-orange-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0 
-          bg-amber-200 dark:bg-secondary_login_dark dark:border-gray-700 border-amber-200"
+          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0 
+          bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-semibold leading-tight tracking-tight md:text-2xl text-black dark:text-white">
@@ -138,7 +138,7 @@ const RegisterPage = () => {
                   id="email"
                   value={gmail}
                   onChange={(e) => setGmail(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="name@company.com"
                   required
@@ -157,7 +157,7 @@ const RegisterPage = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="••••••••"
                   required
@@ -176,7 +176,7 @@ const RegisterPage = () => {
                   id="confirm_password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="••••••••"
                   required
@@ -195,7 +195,7 @@ const RegisterPage = () => {
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="Cristiano"
                   required
@@ -214,7 +214,7 @@ const RegisterPage = () => {
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="Ronaldo"
                   required
@@ -233,7 +233,7 @@ const RegisterPage = () => {
                   id="middleName"
                   value={middleName}
                   onChange={(e) => setMiddleName(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="Siu"
                   required
@@ -252,7 +252,7 @@ const RegisterPage = () => {
                   id="dateOfBirth"
                   value={dateOfBirth}
                   onChange={(e) => setDateOfBirth(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="name@company.com"
                   required
@@ -270,14 +270,15 @@ const RegisterPage = () => {
                   name="avatarImage"
                   id="avatarImage"
                   onChange={handleAvatarChange}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-amber-200 dark:border-gray-600 placeholder-black text-black dark:text-white focus:ring-white focus:border-white"
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 placeholder-black text-black dark:text-white focus:ring-white focus:border-white"
                   required
                 />
               </div>
               <button
                 type="submit"
                 className="w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                            bg-cyan-500 hover:bg-cyan-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white"
+                bg-gradient-to-r from-rose-300 to-pink-500 hover:from-rose-600 hover:to-pink-600 
+                dark:bg-gradient-to-r dark:from-blue-600 dark:to-violet-600 dark:hover:from-blue-800 dark:hover:to-indigo-900 text-white"
                 disabled={loading}
               >
                 {" "}

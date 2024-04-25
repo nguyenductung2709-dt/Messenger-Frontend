@@ -31,8 +31,8 @@ const MessageContainer = () => {
   return !selectedConversation ? (
     <NoChatSelected />
   ) : (
-    <div className="basis-6/10 flex flex-col h-screen overflow-y-auto bg-amber-100 dark:bg-primary_message_dark">
-      <div className="bg-gradient-to-r from-amber-400 to-red-400 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800 px-4 py-2 mb-2">
+    <div className="basis-6/10 flex flex-col h-screen overflow-y-auto bg-rose-100 dark:bg-primary_message_dark">
+      <div className="bg-gradient-to-r from-rose-300 to-pink-500 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-800 px-4 py-2 mb-2">
         <span className="label-text text-white"> To: </span>{" "}
         {isInbox ? (
           <span className="text-black dark:text-white">
@@ -56,7 +56,7 @@ export default MessageContainer;
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
   return (
-    <div className="basis-6/10 flex flex-col h-screen overflow-y-auto bg-amber-100 dark:bg-primary_message_dark items-center justify-center text-3xl">
+    <div className="basis-6/10 flex flex-col h-screen overflow-y-auto bg-rose-100 dark:bg-primary_message_dark items-center justify-center text-3xl">
       <p>Welcome 👋 {authUser.fullName}</p>
       <p>Select a chat to start messaging</p>
     </div>

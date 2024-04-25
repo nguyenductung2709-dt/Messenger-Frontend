@@ -20,14 +20,14 @@ const GroupFormation = ({
       />
       <label
         htmlFor="dropdownCheckbox"
-        className="text-white bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+        className="text-white bg-gradient-to-r from-rose-300 to-pink-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
                       dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
       >
         <GrGroup size={"2.1em"} />
       </label>
 
       {dropdownVisible && (
-        <div className="z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow w-72 dark:bg-gray-700 bg-amber-100">
+        <div className="z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow w-72 dark:bg-gray-700 bg-rose-100">
           <p className="text-black dark:text-white text-2xl border-none px-4 py-2 font-bold">
             Select friends
           </p>
@@ -51,7 +51,7 @@ const GroupFormation = ({
             {friends.map((friend) => (
               <li
                 key={friend.id}
-                className="flex items-center justify-between px-4 py-2 hover:bg-amber-200 dark:hover:bg-gray-600 dark:hover:text-white border-none cursor-pointer"
+                className="flex items-center justify-between px-4 py-2 hover:bg-rose-200 dark:hover:bg-gray-600 dark:hover:text-white border-none cursor-pointer"
                 onClick={() => handleSelectUser(friend.user.id)}
               >
                 <div className="flex items-center flex-grow">
@@ -75,7 +75,7 @@ const GroupFormation = ({
             ))}
           </ul>
           <button
-            className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-500 dark:hover:bg-blue-700 text-white
+            className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-gradient-to-r from-rose-300 to-pink-500 hover:from-green-400 hover:to-blue-500 dark:bg-blue-500 dark:hover:bg-blue-700 text-white
                       dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
             onClick={handleFormGroup}
           >

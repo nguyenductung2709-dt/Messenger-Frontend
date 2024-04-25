@@ -33,7 +33,7 @@ const Message = ({ message }) => {
   );
   const profilePic = participant?.user.avatarName || "";
   const firstName = participant?.user.firstName;
-  const bubbleBgColor = fromMe ? "bg-orange-300 dark:bg-blue-500" : "bg-rose-400 dark:bg-indigo-700";
+  const bubbleBgColor = fromMe ? "bg-rose-300 dark:bg-blue-500" : "bg-rose-400 dark:bg-indigo-700";
   const fileUrl = message.fileUrl;
   const imageUrl = message.imageUrl;
   console.log(message);

@@ -72,7 +72,7 @@ const MessageForm = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="text-sm block w-full p-2.5 text-black dark:text-white bg-orange-300 dark:bg-gray-700 h-11"
+            className="text-sm block w-full p-2.5 text-black dark:text-white bg-rose-300 dark:bg-gray-700 h-11"
             placeholder="Send a message"
           />
           <div className="absolute inset-y-0 end-20 flex items-center pl-3">
@@ -119,7 +119,7 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
   };
 
   return (
-    <div className="h-1/5 flex flex-col justify-center bg-orange-300 dark:bg-gray-700 border-b-1.2 border-rose-400 dark:border-gray-500 relative">
+    <div className="h-1/5 flex flex-col justify-center bg-rose-300 dark:bg-gray-700 border-b-1.2 border-rose-400 dark:border-gray-500 relative">
       {messageImage.type.includes("image") ? (
         <img
           className="w-52 max-h-40"

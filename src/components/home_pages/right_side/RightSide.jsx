@@ -28,7 +28,7 @@ const RightSide = () => {
   }, [selectedConversation, authUser, isInbox]);
 
   return (
-    <div className="basis-2/10 flex flex-col bg-amber-200 dark:bg-secondary_message_dark shadow-sm shadow-orange-500 dark:shadow-white">
+    <div className="basis-2/10 flex flex-col bg-rose-200 dark:bg-secondary_message_dark shadow-sm shadow-rose-500 dark:shadow-white">
       <NavBar />
       <div className="flex flex-col flex-g  items-center justify-center">
         {userUsed ? (

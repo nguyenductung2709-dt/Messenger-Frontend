@@ -26,7 +26,7 @@ const LeftSide = () => {
   };
 
   return (
-    <div className="basis-2/10 flex flex-col h-screen overflow-y-auto relative bg-amber-200 dark:bg-secondary_message_dark shadow-sm shadow-orange-500 dark:shadow-white">
+    <div className="basis-2/10 flex flex-col h-screen overflow-y-auto relative bg-rose-200 dark:bg-secondary_message_dark shadow-sm shadow-rose-500 dark:shadow-white">
       <Toaster position="top-center" reverseOrder={false} />
       {friendForm ? (
         <FriendForm
@@ -35,7 +35,7 @@ const LeftSide = () => {
         />
       ) : (
         <div className="px-4 py-2 mb-2">
-          <h1 className="bg-gradient-to-r from-orange-500 to-pink-500 dark:from-indigo-600 dark:to-rose-700 bg-clip-text text-transparent text-2xl mt-2 font-semibold">
+          <h1 className="bg-gradient-to-r from-pink-500 to-rose-100 dark:from-indigo-600 dark:to-rose-700 bg-clip-text text-transparent text-2xl mt-2 font-semibold">
             {" "}
             Conversations{" "}
           </h1>

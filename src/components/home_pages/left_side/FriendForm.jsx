@@ -59,7 +59,7 @@ const FriendForm = ({ onClose, showNotification }) => {
         <button
           type="submit"
           className="w-full focus:ring-4 font-medium rounded-lg text-lg px-5 py-2.5 text-center text-white
-                      bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 
+                      bg-gradient-to-r from-rose-300 to-pink-500 hover:from-green-400 hover:to-blue-500 
                       dark:bg-gradient-to-r dark:from-green-400 dark:to-blue-500 dark:hover:from-pink-500 dark:hover:to-yellow-500"
         >
           Add friend

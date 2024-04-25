@@ -22,17 +22,18 @@ const AvatarDropdown = ({
         </label>
 
         {avatarDropdownVisible && (
-          <div className="w-52 z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow bg-amber-100 dark:bg-gray-700">
+          <div className="w-52 z-20 absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg shadow bg-rose-100 dark:bg-gray-700">
             <div className="w-full">
-              <p className="text-black dark:text-white text-base font-medium mb-8 w-full">
+              <p className="text-black dark:text-white text-base font-medium mt-4 mb-8 w-full">
                 {user.firstName} {user.middleName} {user.lastName}
               </p>
-              <button className="w-full border-none flex-grow focus:ring-4 font-medium rounded-lg text-sm py-2.5 text-center bg-blue-600 hover:bg-blue-700 text-black dark:text-white">
+              <button className="w-full border-none flex-grow focus:ring-4 font-medium rounded-lg text-sm py-2.5 text-center bg-gradient-to-r from-rose-300 to-pink-500 hover:from-rose-600 hover:to-pink-600 
+                dark:bg-gradient-to-r dark:from-blue-600 dark:to-violet-600 dark:hover:from-blue-800 dark:hover:to-indigo-900 text-black dark:text-white">
                 User Information
               </button>
             </div>
             <button
-              className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-500 hover:bg-red-700 text-black dark:text-white"
+              className="border-none w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-gradient-to-r from-red-600 to-rose-700 hover:from-rose-600 hover:to-pink-600 text-black dark:text-white"
               onClick={handleLogout}
             >
               Logout
