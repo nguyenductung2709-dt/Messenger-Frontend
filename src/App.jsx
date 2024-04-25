@@ -8,6 +8,7 @@ import {
 import LoginPage from "./components/side_pages/LoginPage";
 import RegisterPage from "./components/side_pages/RegisterPage";
 import HomePage from "./components/home_pages/HomePage";
+import InformationPage from "./components/home_pages/user_information/InformationPage";
 import { useAuthContext } from "./context/AuthContext";
 
 const App = () => {
@@ -27,6 +28,14 @@ const App = () => {
           <Route
             path="/register"
             element={authUser ? <Navigate to="/" /> : <RegisterPage />}
+          />
+          <Route
+            path="/register"
+            element={authUser ? <Navigate to="/" /> : <RegisterPage />}
+          />
+          <Route
+            path="/information"
+            element={authUser ? <InformationPage/> : <Navigate to="/login" />}
           />
         </Routes>
       </>
