@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "https://messenger-server.fly.dev/",
         changeOrigin: true,
       },
     },
