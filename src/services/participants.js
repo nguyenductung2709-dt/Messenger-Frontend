@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://messenger-server.fly.dev/api/participants";
+const baseUrl = "https://messenger-server-platform.fly.dev/api/participants";
 
 const getParticipantById = async (conversationId) => {
   const getUrl = baseUrl + `/${conversationId}`;

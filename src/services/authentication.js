@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://messenger-server.fly.dev/api/auth";
+const baseUrl = "https://messenger-server-platform.fly.dev/api/auth";
 
 let token = null;
 
@@ -14,7 +14,7 @@ const login = async (credentials) => {
 };
 
 const register = async (credentials) => {
-  const response = await axios.post("/api/users", credentials);
+  const response = await axios.post("https://messenger-server-platform.fly.dev/api/users", credentials);
   return response.data;
 };
 

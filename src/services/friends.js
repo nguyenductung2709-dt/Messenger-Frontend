@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://messenger-server.fly.dev/api/friends";
+const baseUrl = "https://messenger-server-platform.fly.dev/api/friends";
 
 let token = null;
 
