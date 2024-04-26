@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "/api/conversations";
+const baseUrl = "https://messenger-server.fly.dev/api/conversations";
 
 let token = null;
 
