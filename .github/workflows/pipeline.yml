@@ -2,7 +2,6 @@ name: Backend Deployment Pipeline
 
 on:
   push:
-    
     branches:
       - main
   pull_request:
@@ -13,8 +12,8 @@ jobs:
   deployment_pipeline:
     runs-on: ubuntu-20.04
     env:
-        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: Checkout directory
         uses: actions/checkout@v4
