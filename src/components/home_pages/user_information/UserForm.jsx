@@ -1,8 +1,8 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import useDarkMode from '../../../hooks/useDarkMode';
-import { FaMoon, FaSun } from 'react-icons/fa'
-import userService from '../../../services/users'
+import useDarkMode from "../../../hooks/useDarkMode";
+import { FaMoon, FaSun } from "react-icons/fa";
+import userService from "../../../services/users";
 import { HiArrowLeftStartOnRectangle } from "react-icons/hi2";
 
 const UserForm = ({ authUser, toggleForm }) => {
@@ -24,30 +24,24 @@ const UserForm = ({ authUser, toggleForm }) => {
     middleName,
     dateOfBirth,
   ) {
-    if (
-      !gmail &&
-      !firstName &&
-      !lastName &&
-      !middleName &&
-      !dateOfBirth
-    ) {
+    if (!gmail && !firstName && !lastName && !middleName && !dateOfBirth) {
       toast.error("Please fill in at least one field");
       return false;
     }
     return true;
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const check = handleInputErrors(
-        gmail,
-        firstName,
-        lastName,
-        middleName,
-        dateOfBirth,
-      );
-      if (!check) return;
+      gmail,
+      firstName,
+      lastName,
+      middleName,
+      dateOfBirth,
+    );
+    if (!check) return;
 
     setLoading(true);
     try {
@@ -60,8 +54,11 @@ const UserForm = ({ authUser, toggleForm }) => {
       if (avatarImage) {
         formData.append("avatarImage", avatarImage);
       }
-      userService.setToken(authUser.token)
-      const details = await userService.changeUserInformation(formData, authUser.id);
+      userService.setToken(authUser.token);
+      const details = await userService.changeUserInformation(
+        formData,
+        authUser.id,
+      );
       if (details.error) {
         throw new Error(details.error);
       }
@@ -85,22 +82,25 @@ const UserForm = ({ authUser, toggleForm }) => {
   };
 
   return (
-    <section className= "dark:bg-primary_login_dark bg-rose-300 h-screen">
+    <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-6">
-      <label className="swap absolute top-10 right-40">
-        <span onClick={handleMode} className={`transition-transform transform ${darkTheme ? 'rotate-0' : 'rotate-180'}`}>
-          {darkTheme ? (
-            <FaMoon size= {"2.1em"} className='top-navigation-icon' />
-          ) : (
-            <FaSun size= {"2.1em"} className='top-navigation-icon' />
-          )}
-        </span>
-      </label>
+        <label className="swap absolute top-10 right-40">
+          <span
+            onClick={handleMode}
+            className={`transition-transform transform ${darkTheme ? "rotate-0" : "rotate-180"}`}
+          >
+            {darkTheme ? (
+              <FaMoon size={"2.1em"} className="top-navigation-icon" />
+            ) : (
+              <FaSun size={"2.1em"} className="top-navigation-icon" />
+            )}
+          </span>
+        </label>
         <div
           className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-16 sm:max-w-md xl:p-0 
           bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"
-        > 
+        >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-semibold leading-tight tracking-tight md:text-2xl text-black dark:text-white">
               Change information
@@ -226,24 +226,25 @@ const UserForm = ({ authUser, toggleForm }) => {
                 )}{" "}
               </button>
 
-
-
-
-
               <p className="text-sm font-light dark:text-gray-400 text-black">
                 Have nothing to change?{" "}
                 <button
                   className="font-semibold hover:underline text-black dark:text-white"
                   onClick={toggleForm}
                 >
-                    Your information
+                  Your information
                 </button>
               </p>
             </form>
           </div>
         </div>
-        <a href = "/"><HiArrowLeftStartOnRectangle size = {'3.5em'} className = "text-white mt-8 mb-2"/></a>
-        <p className = "text-white"> Come back to chat </p>
+        <a href="/">
+          <HiArrowLeftStartOnRectangle
+            size={"3.5em"}
+            className="text-white mt-8 mb-2"
+          />
+        </a>
+        <p className="text-white"> Come back to chat </p>
       </div>
     </section>
   );

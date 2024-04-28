@@ -42,7 +42,9 @@ const MessageContainer = () => {
             <span>{userUsed.lastName}</span>
           </span>
         ) : (
-          <span className="text-black dark:text-white">{selectedConversation.title}</span>
+          <span className="text-black dark:text-white">
+            {selectedConversation.title}
+          </span>
         )}
       </div>
       <Messages />

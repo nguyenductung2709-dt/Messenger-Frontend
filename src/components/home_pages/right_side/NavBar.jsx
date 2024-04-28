@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../../../context/AuthContext";
 import { changeFriends } from "../../../reducers/friendReducer";
 import { changeConversations } from "../../../reducers/conversationsReducer";
-import useDarkMode from '../../../hooks/useDarkMode';
-import { FaMoon, FaSun } from 'react-icons/fa'
-
-
+import useDarkMode from "../../../hooks/useDarkMode";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 import useListenFriends from "../../../hooks/useListenFriends";
 import authenticationService from "../../../services/authentication";
@@ -113,11 +111,14 @@ const NavBar = () => {
       <Toaster position="top-center" reverseOrder={false} />
 
       <label className="swap swap-rotate basis-1/3">
-        <span onClick={handleMode} className={`transition-transform transform ${darkTheme ? 'rotate-0' : 'rotate-180'}`}>
+        <span
+          onClick={handleMode}
+          className={`transition-transform transform ${darkTheme ? "rotate-0" : "rotate-180"}`}
+        >
           {darkTheme ? (
-            <FaMoon size= {"2.1em"} className='top-navigation-icon' />
+            <FaMoon size={"2.1em"} className="top-navigation-icon" />
           ) : (
-            <FaSun size= {"2.1em"} className='top-navigation-icon' />
+            <FaSun size={"2.1em"} className="top-navigation-icon" />
           )}
         </span>
       </label>

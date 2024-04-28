@@ -128,7 +128,7 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
         />
       ) : (
         <div className="flex flex-col gap-10 h-40 w-40 rounded-lg bg-rose-400 dark:bg-gray-700 items-center">
-          <AiFillFilePdf size={100} className ="dark:text-white text-blue-800"/>
+          <AiFillFilePdf size={100} className="dark:text-white text-blue-800" />
           <p className="text-black dark:text-white text-sm">
             {messageImage.name.length > 20
               ? `${messageImage.name.substring(0, 20)}...`

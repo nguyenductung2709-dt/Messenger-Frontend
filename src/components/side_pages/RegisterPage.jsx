@@ -1,9 +1,8 @@
 import { useState } from "react";
 import authenticationService from "../../services/authentication";
 import toast, { Toaster } from "react-hot-toast";
-import useDarkMode from '../../hooks/useDarkMode';
-import { FaMoon, FaSun } from 'react-icons/fa'
-
+import useDarkMode from "../../hooks/useDarkMode";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
@@ -104,18 +103,21 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className= "dark:bg-primary_login_dark bg-rose-300">
+    <section className="dark:bg-primary_login_dark bg-rose-300">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-6">
-      <label className="swap absolute top-10 right-40">
-        <span onClick={handleMode} className={`transition-transform transform ${darkTheme ? 'rotate-0' : 'rotate-180'}`}>
-          {darkTheme ? (
-            <FaMoon size= {"2.1em"} className='top-navigation-icon' />
-          ) : (
-            <FaSun size= {"2.1em"} className='top-navigation-icon' />
-          )}
-        </span>
-      </label>
+        <label className="swap absolute top-10 right-40">
+          <span
+            onClick={handleMode}
+            className={`transition-transform transform ${darkTheme ? "rotate-0" : "rotate-180"}`}
+          >
+            {darkTheme ? (
+              <FaMoon size={"2.1em"} className="top-navigation-icon" />
+            ) : (
+              <FaSun size={"2.1em"} className="top-navigation-icon" />
+            )}
+          </span>
+        </label>
         <div
           className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0 
           bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"

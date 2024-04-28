@@ -13,13 +13,13 @@ const getUserById = async (id) => {
   return res.data;
 };
 
-const changeUserInformation = async(credentials, id) => {
+const changeUserInformation = async (credentials, id) => {
   const putUrl = baseUrl + `/${id}`;
   const config = {
     headers: { Authorization: token },
   };
   const response = await axios.put(putUrl, credentials, config);
   return response.data;
-}
+};
 
 export default { getUserById, changeUserInformation, setToken };

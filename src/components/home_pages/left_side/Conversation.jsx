@@ -60,7 +60,10 @@ const Conversation = ({ conversation, currentUser }) => {
 
           <div className="flex flex-col flex-1">
             <div className="flex gap-3 justify-between">
-              <p className="text-black dark:text-white"> {conversation.title} </p>
+              <p className="text-black dark:text-white">
+                {" "}
+                {conversation.title}{" "}
+              </p>
             </div>
           </div>
         </div>
