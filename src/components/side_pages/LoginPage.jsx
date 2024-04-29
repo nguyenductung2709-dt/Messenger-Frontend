@@ -38,13 +38,10 @@ const LoginPage = () => {
       if (user.error) {
         throw new Error(user.error);
       }
-      toast.promise(
-        setLoading(true),
-        {
-           loading: 'Loging in...',
-           success: <b>Login successfully!</b>,
-         }
-       );
+      toast.promise(setLoading(true), {
+        loading: "Loging in...",
+        success: <b>Login successfully!</b>,
+      });
       localStorage.setItem("loggedInChatUser", JSON.stringify(user));
       setAuthUser(user);
     } catch (err) {
