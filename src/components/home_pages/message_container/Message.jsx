@@ -38,7 +38,6 @@ const Message = ({ message }) => {
     : "bg-rose-400 dark:bg-indigo-700";
   const fileUrl = message.fileUrl;
   const imageUrl = message.imageUrl;
-  console.log(message);
 
   return (
     <div className={`chat ${chatClassName}`}>
