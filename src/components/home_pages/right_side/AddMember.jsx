@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { toast } from 'react-hot-toast'
-import participantService from '../../../services/participants'
+import { toast } from "react-hot-toast";
+import participantService from "../../../services/participants";
 
 const AddMember = ({ authUser, selectedConversation }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,19 +29,19 @@ const AddMember = ({ authUser, selectedConversation }) => {
   const handleAddToGroup = async (e) => {
     e.preventDefault();
     try {
-        participantService.setToken(authUser.token);
-        const newParticipant = {
-          conversationId: selectedConversation.id,
-          gmail: gmail,
-        };
-        await participantService.addParticipant(newParticipant);
-        dispatch(selectedConversation.participant_list);
-        toast.success("Friend added successfully");
-      } catch (err) {
-        toast.error("Failed to add friend to group");
-      }
+      participantService.setToken(authUser.token);
+      const newParticipant = {
+        conversationId: selectedConversation.id,
+        gmail: gmail,
+      };
+      await participantService.addParticipant(newParticipant);
+      dispatch(selectedConversation.participant_list);
+      toast.success("Friend added successfully");
+    } catch (err) {
+      toast.error("Failed to add friend to group");
+    }
 
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
   return (

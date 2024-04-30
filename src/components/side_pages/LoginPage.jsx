@@ -24,46 +24,45 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const check = handleInputErrors(gmail, password);
     if (!check) {
       return;
     }
-  
+
     try {
-      const userDetails = { gmail, password };  
+      const userDetails = { gmail, password };
       const user = await withTimeout(
         authenticationService.login(userDetails),
-        7000, 
-        "Login timed out"
+        7000,
+        "Login timed out",
       );
-  
+
       if (user.error) {
         throw new Error(user.error);
       }
-      
+
       setLoading(true);
       localStorage.setItem("loggedInChatUser", JSON.stringify(user));
       setAuthUser(user);
     } catch (err) {
-      setLoading(false); 
+      setLoading(false);
       toast.error(err.message || "Login failed. Please check your credentials");
     }
   };
-  
+
   function withTimeout(promise, ms, timeoutError) {
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
         reject(new Error(timeoutError));
       }, ms);
-  
+
       promise
         .then(resolve)
         .catch(reject)
         .finally(() => clearTimeout(timer));
     });
   }
-  
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300">
