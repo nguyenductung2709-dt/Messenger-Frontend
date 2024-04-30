@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../../../context/AuthContext";
 import { changeFriends } from "../../../reducers/friendReducer";
 import { changeConversations } from "../../../reducers/conversationsReducer";
+import { changeParticipants } from "../../../reducers/participantsReducer";
 import useDarkMode from "../../../hooks/useDarkMode";
 import { FaMoon, FaSun } from "react-icons/fa";
 
@@ -15,9 +16,9 @@ import friendService from "../../../services/friends";
 import AvatarDropdown from "./AvatarDropdown";
 import GroupFormation from "./GroupFormation";
 
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
-const NavBar = () => {
+const NavBar = ({ selectedConversation }) => {
   const [user, setUser] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [avatarDropdownVisible, setAvatarDropdownVisible] = useState(false);
@@ -88,7 +89,7 @@ const NavBar = () => {
         participants: selectedUsers,
       };
       await conversationService.createConversation(groupDetails);
-
+      dispatch(changeParticipants(selectedConversation.participant_list));
       const currentUserInfo = await userService.getUserById(authUser.id);
       const conversationIds = currentUserInfo.conversation.map(
         (singleConversation) => singleConversation.id,
@@ -98,7 +99,6 @@ const NavBar = () => {
         return conversationIds.includes(conversation.id);
       });
       dispatch(changeConversations(filteredConversations));
-
       toast.success("Group form successful");
       setTitle("");
       setSelectedUsers([]);
@@ -108,8 +108,6 @@ const NavBar = () => {
 
   return (
     <div className="flex h-15 items-center justify-center top-0 mb-10">
-      <Toaster position="top-center" reverseOrder={false} />
-
       <label className="swap swap-rotate basis-1/3">
         <span
           onClick={handleMode}

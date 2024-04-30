@@ -1,8 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeParticipants } from "../../../reducers/participantsReducer";
 
 const MemberList = ({ selectedConversation }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dispatch = useDispatch();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,7 +24,15 @@ const MemberList = ({ selectedConversation }) => {
     };
   }, []);
 
-  const participants = selectedConversation.participant_list;
+  useEffect(() => {
+    const fetchParticipants = async () => {
+      dispatch(changeParticipants(selectedConversation.participant_list));
+    };
+
+    fetchParticipants();
+  }, [selectedConversation, dispatch]);
+
+  const participants = useSelector((state) => state.participants);
 
   return (
     <div className="mt-20 w-full relative" ref={dropdownRef}>

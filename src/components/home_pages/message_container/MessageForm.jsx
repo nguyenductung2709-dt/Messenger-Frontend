@@ -7,6 +7,7 @@ import messageService from "../../../services/messages";
 import { AiFillFilePdf } from "react-icons/ai";
 import { changeMessages } from "../../../reducers/messageReducer";
 import { AiOutlineClose } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 const MessageForm = () => {
   const [message, setMessage] = useState("");
@@ -39,9 +40,21 @@ const MessageForm = () => {
     setMessageImage(null);
   };
 
+  function handleInputErrors(message, messageImage) {
+    if (!message && !messageImage) {
+      toast.error("You cannot send blank message");
+      return false;
+    }
+    return true;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const check = handleInputErrors(message, messageImage);
+      if (!check) {
+        return;
+      }
       const formData = new FormData();
       formData.append("conversationId", selectedConversation.id);
       formData.append("message", message);

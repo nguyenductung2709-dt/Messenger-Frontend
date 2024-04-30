@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useAuthContext } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
 import MemberList from "./MemberList";
+import AddMember from './AddMember';
 import bigThree from "../../../assets/default_group.jpeg";
 
 const RightSide = () => {
@@ -29,7 +30,7 @@ const RightSide = () => {
 
   return (
     <div className="basis-2/10 flex flex-col bg-rose-200 dark:bg-secondary_message_dark shadow-sm shadow-rose-500 dark:shadow-white">
-      <NavBar />
+      <NavBar selectedConversation = {selectedConversation}/>
       <div className="flex flex-col flex-g  items-center justify-center">
         {userUsed ? (
           <>
@@ -57,7 +58,12 @@ const RightSide = () => {
           </>
         )}
       </div>
-      {isGroup && <MemberList selectedConversation={selectedConversation} />}
+      {isGroup && 
+      <>
+      <MemberList selectedConversation={selectedConversation} />
+      <AddMember authUser={authUser} selectedConversation={selectedConversation}/>
+      </>
+      }
     </div>
   );
 };

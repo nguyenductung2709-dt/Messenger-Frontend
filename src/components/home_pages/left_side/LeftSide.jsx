@@ -3,7 +3,7 @@ import Conversations from "./Conversations";
 import { useState } from "react";
 import { MdOutlineOpenInNew } from "react-icons/md";
 import FriendForm from "./FriendForm";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const LeftSide = () => {
   const [friendForm, setFriendForm] = useState(false);
@@ -27,7 +27,6 @@ const LeftSide = () => {
 
   return (
     <div className="basis-2/10 flex flex-col h-screen overflow-y-auto relative bg-rose-200 dark:bg-secondary_message_dark shadow-sm shadow-rose-500 dark:shadow-white">
-      <Toaster position="top-center" reverseOrder={false} />
       {friendForm ? (
         <FriendForm
           onClose={closeFriendForm}

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { changeSelectedConversation } from "../../../reducers/conversationReducer";
 import { useAuthContext } from "../../../context/AuthContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -46,7 +46,6 @@ const SearchBar = () => {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
       <form className="relative w-full" onSubmit={handleSearchBar}>
         <div className="flex items-center w-full border-none rounded-full px-4 py-2">
           <input
