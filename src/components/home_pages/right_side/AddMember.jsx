@@ -1,11 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { toast } from "react-hot-toast";
-import participantService from "../../../services/participants";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import participantService from '../../../services/participants';
+import conversationService from '../../../services/conversations';
+import { changeParticipants } from '../../../reducers/participantsReducer';
 
-const AddMember = ({ authUser, selectedConversation }) => {
+function AddMember({ authUser, selectedConversation }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [gmail, setGmail] = useState("");
+  const [gmail, setGmail] = useState('');
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -20,27 +25,32 @@ const AddMember = ({ authUser, selectedConversation }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   const handleAddToGroup = async (e) => {
     e.preventDefault();
     try {
+      const confirmDelete = window.confirm('Are you sure you want add this person?');
+      if (!confirmDelete) return;
       participantService.setToken(authUser.token);
       const newParticipant = {
         conversationId: selectedConversation.id,
-        gmail: gmail,
+        gmail,
       };
+      participantService.setToken(authUser.token);
       await participantService.addParticipant(newParticipant);
-      dispatch(selectedConversation.participant_list);
-      toast.success("Friend added successfully");
+      const newConversation = await conversationService
+        .getConversationById(selectedConversation.id);
+      dispatch(changeParticipants(newConversation.participant_list));
+      toast.success('Friend added successfully');
     } catch (err) {
-      toast.error("Failed to add friend to group");
+      toast.error('Failed to add friend to group');
     }
-
+    setGmail('');
     setIsOpen(false);
   };
 
@@ -55,7 +65,7 @@ const AddMember = ({ authUser, selectedConversation }) => {
       </button>
 
       <div
-        className={`absolute w-full z-10 ${isOpen ? "block" : "hidden"} bg-rose-200 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700`}
+        className={`absolute w-full z-10 ${isOpen ? 'block' : 'hidden'} bg-rose-200 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700`}
       >
         <form className="px-4 py-2 mb-2" onSubmit={handleAddToGroup}>
           <input
@@ -63,7 +73,8 @@ const AddMember = ({ authUser, selectedConversation }) => {
             name="gmail"
             value={gmail}
             onChange={(e) => setGmail(e.target.value)}
-            className="w-full rounded-lg h-12 text-black dark:text-black bg-white dark:bg-black"
+            className="mb-2 border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600
+            placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
             placeholder="Add friends by gmail"
             required
           />
@@ -77,6 +88,6 @@ const AddMember = ({ authUser, selectedConversation }) => {
       </div>
     </div>
   );
-};
+}
 
 export default AddMember;

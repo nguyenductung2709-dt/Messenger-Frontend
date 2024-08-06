@@ -1,5 +1,6 @@
-import axios from "axios";
-const baseUrl = "https://messenger-server-platform.fly.dev/api/friends";
+import axios from 'axios';
+
+const baseUrl = '/api/friends';
 
 let token = null;
 
@@ -8,7 +9,7 @@ const setToken = (newToken) => {
 };
 
 const getFriendsById = async (id) => {
-  const getUrl = baseUrl + `/${id}`;
+  const getUrl = `${baseUrl}/${id}`;
   const response = await axios.get(getUrl);
   return response.data;
 };

@@ -1,30 +1,29 @@
-import { useState } from "react";
-import { AiOutlineSend } from "react-icons/ai";
-import Picker from "emoji-picker-react";
-import { useAuthContext } from "../../../context/AuthContext";
-import { useSelector, useDispatch } from "react-redux";
-import messageService from "../../../services/messages";
-import { AiFillFilePdf } from "react-icons/ai";
-import { changeMessages } from "../../../reducers/messageReducer";
-import { AiOutlineClose } from "react-icons/ai";
-import toast from "react-hot-toast";
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
+import { AiOutlineSend, AiFillFilePdf, AiOutlineClose } from 'react-icons/ai';
+import Picker from 'emoji-picker-react';
+import { useSelector, useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../../../context/AuthContext';
+import messageService from '../../../services/messages';
+import { changeMessages } from '../../../reducers/messageReducer';
 
-const MessageForm = () => {
-  const [message, setMessage] = useState("");
+function MessageForm() {
+  const [message, setMessage] = useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [messageImage, setMessageImage] = useState(null);
   const dispatch = useDispatch();
-  const selectedConversation = useSelector(
-    (state) => state.selectedConversation,
-  );
+  const selectedConversation = useSelector((state) => state.selectedConversation);
   const messages = useSelector((state) => state.messages);
   const { authUser } = useAuthContext();
 
   const onEmojiClick = (event) => {
-    let sym = event.unified.split("-");
-    let codesArray = [];
-    sym.forEach((el) => codesArray.push("0x" + el));
-    let emoji = String.fromCodePoint(...codesArray);
+    const sym = event.unified.split('-');
+    const codesArray = [];
+    sym.forEach((el) => codesArray.push(`0x${el}`));
+    const emoji = String.fromCodePoint(...codesArray);
     setMessage((prev) => prev + emoji);
     setShowPicker(false);
   };
@@ -40,9 +39,9 @@ const MessageForm = () => {
     setMessageImage(null);
   };
 
-  function handleInputErrors(message, messageImage) {
+  function handleInputErrors() {
     if (!message && !messageImage) {
-      toast.error("You cannot send blank message");
+      toast.error('You cannot send blank message');
       return false;
     }
     return true;
@@ -51,20 +50,20 @@ const MessageForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const check = handleInputErrors(message, messageImage);
+      const check = handleInputErrors();
       if (!check) {
         return;
       }
       const formData = new FormData();
-      formData.append("conversationId", selectedConversation.id);
-      formData.append("message", message);
+      formData.append('conversationId', selectedConversation.id);
+      formData.append('message', message);
       if (messageImage) {
-        formData.append("messageImage", messageImage);
+        formData.append('messageImage', messageImage);
       }
       messageService.setToken(authUser.token);
       const data = await messageService.sendMessage(formData);
       dispatch(changeMessages([...messages, data]));
-      setMessage("");
+      setMessage('');
       setMessageImage(null);
     } catch (err) {
       throw new Error(err.message);
@@ -73,12 +72,8 @@ const MessageForm = () => {
 
   return (
     <>
-      {messageImage && (
-        <DisplayForFile
-          messageImage={messageImage}
-          onDeleteFile={deleteFileChange}
-        />
-      )}
+      {messageImage
+      && <DisplayForFile messageImage={messageImage} onDeleteFile={deleteFileChange} />}
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="w-full relative">
           <input
@@ -97,7 +92,7 @@ const MessageForm = () => {
               name="messageImage"
               id="messageImage"
               onChange={handleFileChange}
-              style={{ display: "none" }} // Hide the default input
+              style={{ display: 'none' }} // Hide the default input
             />
           </div>
           <button
@@ -108,11 +103,7 @@ const MessageForm = () => {
           >
             🙂
           </button>
-          <button
-            type="submit"
-            className="absolute inset-y-0 end-0 flex items-center pe-3"
-            aria-label="Send message"
-          >
+          <button type="submit" className="absolute inset-y-0 end-0 flex items-center pe-3" aria-label="Send message">
             <AiOutlineSend size={25} />
           </button>
           {showPicker && (
@@ -124,28 +115,22 @@ const MessageForm = () => {
       </form>
     </>
   );
-};
+}
 
-const DisplayForFile = ({ messageImage, onDeleteFile }) => {
+function DisplayForFile({ messageImage, onDeleteFile }) {
   const handleDelete = () => {
     onDeleteFile();
   };
 
   return (
     <div className="h-1/5 flex flex-col justify-center bg-rose-300 dark:bg-gray-700 border-b-1.2 border-rose-400 dark:border-gray-500 relative">
-      {messageImage.type.includes("image") ? (
-        <img
-          className="w-52 max-h-40"
-          src={URL.createObjectURL(messageImage)}
-          alt="messageImage"
-        />
+      {messageImage.type.includes('image') ? (
+        <img className="w-52 max-h-40" src={URL.createObjectURL(messageImage)} alt="messageImage" />
       ) : (
         <div className="flex flex-col gap-10 h-40 w-40 rounded-lg bg-rose-400 dark:bg-gray-700 items-center">
           <AiFillFilePdf size={100} className="dark:text-white text-blue-800" />
           <p className="text-black dark:text-white text-sm">
-            {messageImage.name.length > 20
-              ? `${messageImage.name.substring(0, 20)}...`
-              : messageImage.name}
+            {messageImage.name.length > 20 ? `${messageImage.name.substring(0, 20)}...` : messageImage.name}
           </p>
         </div>
       )}
@@ -160,6 +145,6 @@ const DisplayForFile = ({ messageImage, onDeleteFile }) => {
       </div>
     </div>
   );
-};
+}
 
 export default MessageForm;

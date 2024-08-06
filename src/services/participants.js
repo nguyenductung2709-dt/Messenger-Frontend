@@ -1,5 +1,6 @@
-import axios from "axios";
-const baseUrl = "https://messenger-server-platform.fly.dev/api/participants";
+import axios from 'axios';
+
+const baseUrl = '/api/participants';
 
 let token = null;
 
@@ -8,7 +9,7 @@ const setToken = (newToken) => {
 };
 
 const getParticipantById = async (conversationId) => {
-  const getUrl = baseUrl + `/${conversationId}`;
+  const getUrl = `${baseUrl}/${conversationId}`;
   const res = await axios.get(getUrl);
   return res.data;
 };
@@ -21,4 +22,18 @@ const addParticipant = async (credentials) => {
   return response.data;
 };
 
-export default { setToken, getParticipantById, addParticipant };
+const deleteParticipant = async (id) => {
+  const deleteUrl = `${baseUrl}/${id}`;
+  const config = {
+    headers: { Authorization: token },
+  };
+  const response = await axios.delete(deleteUrl, config);
+  return response.data;
+};
+
+export default {
+  setToken,
+  getParticipantById,
+  addParticipant,
+  deleteParticipant,
+};

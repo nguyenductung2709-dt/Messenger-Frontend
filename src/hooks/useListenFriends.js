@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useSocketContext } from "../context/SocketContext";
-import { useEffect } from "react";
-import { changeFriends } from "../reducers/friendReducer";
+/* eslint-disable no-unused-expressions */
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSocketContext } from '../context/SocketContext';
+import { changeFriends } from '../reducers/friendReducer';
 
 const useListenFriends = () => {
   const friends = useSelector((state) => state.friends);
@@ -9,11 +10,11 @@ const useListenFriends = () => {
   const { socket } = useSocketContext();
 
   useEffect(() => {
-    socket?.on("newFriend", (newFriend) => {
+    socket && socket.on('newFriend', (newFriend) => {
       dispatch(changeFriends([...friends, newFriend]));
     });
 
-    return () => socket?.off("newMessage");
+    return () => socket && socket.off('newMessage');
   }, [socket, dispatch, friends]);
 };
 

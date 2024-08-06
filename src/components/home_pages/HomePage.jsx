@@ -1,9 +1,10 @@
-import LeftSide from "./left_side/LeftSide";
-import MessageContainer from "./message_container/MessageContainer";
-import RightSide from "./right_side/RightSide";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
+import React from 'react';
+import LeftSide from './left_side/LeftSide';
+import MessageContainer from './message_container/MessageContainer';
+import RightSide from './right_side/RightSide';
 
-const HomePage = () => {
+function HomePage() {
   return (
     <div className="flex flex-row overflow-hidden w-full h-full">
       <Toaster position="top-center" reverseOrder={false} />
@@ -12,6 +13,6 @@ const HomePage = () => {
       <RightSide />
     </div>
   );
-};
+}
 
 export default HomePage;

@@ -1,22 +1,27 @@
-import { useState } from "react";
-import authenticationService from "../../services/authentication";
-import toast, { Toaster } from "react-hot-toast";
-import { useAuthContext } from "../../context/AuthContext";
-import useDarkMode from "../../hooks/useDarkMode";
-import { FaMoon, FaSun } from "react-icons/fa";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import authenticationService from '../../services/authentication';
+import { useAuthContext } from '../../context/AuthContext';
+import useDarkMode from '../../hooks/useDarkMode';
 
-const LoginPage = () => {
-  const [loading, setLoading] = useState("");
-  const [gmail, setGmail] = useState("");
-  const [password, setPassword] = useState("");
+function LoginPage() {
+  const [loading, setLoading] = useState('');
+  const [gmail, setGmail] = useState('');
+  const [password, setPassword] = useState('');
   const { setAuthUser } = useAuthContext();
   const [darkTheme, setDarkTheme] = useDarkMode();
 
   const handleMode = () => setDarkTheme(!darkTheme);
 
-  function handleInputErrors(gmail, password) {
+  function handleInputErrors() {
     if (!gmail || !password) {
-      toast.error("Please fill in all fields");
+      toast.error('Please fill in all fields');
       return false;
     }
     return true;
@@ -25,29 +30,25 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const check = handleInputErrors(gmail, password);
+    const check = handleInputErrors();
     if (!check) {
       return;
     }
 
     try {
       const userDetails = { gmail, password };
-      const user = await withTimeout(
-        authenticationService.login(userDetails),
-        7000,
-        "Login timed out",
-      );
+      const user = await withTimeout(authenticationService.login(userDetails), 7000, 'Login timed out');
 
       if (user.error) {
         throw new Error(user.error);
       }
 
       setLoading(true);
-      localStorage.setItem("loggedInChatUser", JSON.stringify(user));
+      localStorage.setItem('loggedInChatUser', JSON.stringify(user));
       setAuthUser(user);
     } catch (err) {
       setLoading(false);
-      toast.error(err.message || "Login failed. Please check your credentials");
+      toast.error(err.message || 'Login failed. Please check your credentials');
     }
   };
 
@@ -71,18 +72,18 @@ const LoginPage = () => {
         <label className="swap absolute top-10 right-40">
           <span
             onClick={handleMode}
-            className={`transition-transform transform ${darkTheme ? "rotate-0" : "rotate-180"}`}
+            className={`transition-transform transform ${darkTheme ? 'rotate-0' : 'rotate-180'}`}
           >
             {darkTheme ? (
-              <FaMoon size={"2.1em"} className="top-navigation-icon" />
+              <FaMoon size="2.1em" className="top-navigation-icon" />
             ) : (
-              <FaSun size={"2.1em"} className="top-navigation-icon" />
+              <FaSun size="2.1em" className="top-navigation-icon" />
             )}
           </span>
         </label>
 
         <div
-          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0 
+          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0
                             bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -91,10 +92,7 @@ const LoginPage = () => {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-black dark:text-white"
-                >
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-black dark:text-white">
                   Your email
                 </label>
                 <input
@@ -103,17 +101,14 @@ const LoginPage = () => {
                   id="gmail"
                   value={gmail}
                   onChange={(e) => setGmail(e.target.value)}
-                  className=" border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
+                  className=" border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white focus::bg-white"
                   placeholder="name@company.com"
                   required
                 />
               </div>
               <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-black dark:text-white"
-                >
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-black dark:text-white">
                   Password
                 </label>
                 <input
@@ -122,7 +117,7 @@ const LoginPage = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600 
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
                   placeholder="••••••••"
                   required
@@ -131,24 +126,18 @@ const LoginPage = () => {
 
               <button
                 type="submit"
-                className="w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                bg-gradient-to-r from-rose-300 to-pink-500 hover:from-rose-600 hover:to-pink-600 
+                className="w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                bg-gradient-to-r from-rose-300 to-pink-500 hover:from-rose-600 hover:to-pink-600
                 dark:bg-gradient-to-r dark:from-blue-600 dark:to-violet-600 dark:hover:from-blue-800 dark:hover:to-indigo-900 text-white"
                 disabled={loading}
               >
-                {loading ? (
-                  <span className="loading loading-spinner"></span>
-                ) : (
-                  "Sign In"
-                )}
+                {loading ? <span className="loading loading-spinner" /> : 'Sign In'}
               </button>
 
               <p className="text-sm font-light dark:text-gray-400 text-black">
-                Need an account?{" "}
-                <a
-                  href="/register"
-                  className="font-semibold hover:underline text-black dark:text-white"
-                >
+                Need an account?
+                {' '}
+                <a href="/register" className="font-semibold hover:underline text-black dark:text-white">
                   Sign up
                 </a>
               </p>
@@ -158,6 +147,6 @@ const LoginPage = () => {
       </div>
     </section>
   );
-};
+}
 
 export default LoginPage;

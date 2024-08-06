@@ -1,10 +1,15 @@
-import { FaMoon, FaSun } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import useDarkMode from "../../../hooks/useDarkMode";
-import userService from "../../../services/users";
-import { HiArrowLeftStartOnRectangle } from "react-icons/hi2";
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
+import { FaMoon, FaSun } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { HiArrowLeftStartOnRectangle } from 'react-icons/hi2';
+import useDarkMode from '../../../hooks/useDarkMode';
+import userService from '../../../services/users';
 
-const UserInformation = ({ authUser, toggleForm }) => {
+function UserInformation({ authUser, toggleForm }) {
   const [darkTheme, setDarkTheme] = useDarkMode();
   const handleMode = () => setDarkTheme(!darkTheme);
   const [userUsed, setUserUsed] = useState(null);
@@ -16,7 +21,7 @@ const UserInformation = ({ authUser, toggleForm }) => {
           const user = await userService.getUserById(authUser.id);
           setUserUsed(user);
         } catch (error) {
-          console.error("Error fetching user:", error);
+          throw new Error(error.message);
         }
       }
     };
@@ -27,8 +32,8 @@ const UserInformation = ({ authUser, toggleForm }) => {
   function formatDate(inputDate) {
     const date = new Date(inputDate);
 
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear().toString().slice(-2);
 
     return `${day}.${month}.${year}`;
@@ -40,7 +45,7 @@ const UserInformation = ({ authUser, toggleForm }) => {
         <label className="swap absolute top-10 right-40">
           <span
             onClick={handleMode}
-            className={`transition-transform transform ${darkTheme ? "rotate-0" : "rotate-180"}`}
+            className={`transition-transform transform ${darkTheme ? 'rotate-0' : 'rotate-180'}`}
           >
             {darkTheme ? (
               <FaMoon size="2.1em" className="top-navigation-icon" />
@@ -58,48 +63,84 @@ const UserInformation = ({ authUser, toggleForm }) => {
             {userUsed && (
               <>
                 <div>
-                  <img
-                    className="h-24 w-24 rounded-full"
-                    src={userUsed.avatarName}
-                    alt="User Avatar"
-                  />
+                  <img className="h-24 w-24 rounded-full" src={userUsed.avatarName} alt="User Avatar" />
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your email: <span> {userUsed.gmail} </span>{" "}
+                    {' '}
+                    Your email:
+                    {' '}
+                    <span>
+                      {' '}
+                      {userUsed.gmail}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your first name: <span> {userUsed.firstName} </span>{" "}
+                    {' '}
+                    Your first name:
+                    {' '}
+                    <span>
+                      {' '}
+                      {userUsed.firstName}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your middle name: <span> {userUsed.middleName} </span>{" "}
+                    {' '}
+                    Your middle name:
+                    {' '}
+                    <span>
+                      {' '}
+                      {userUsed.middleName}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your last name: <span> {userUsed.lastName} </span>{" "}
+                    {' '}
+                    Your last name:
+                    {' '}
+                    <span>
+                      {' '}
+                      {userUsed.lastName}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your date of birth:{" "}
-                    <span> {formatDate(userUsed.dateOfBirth)} </span>{" "}
+                    {' '}
+                    Your date of birth:
+                    {' '}
+                    <span>
+                      {' '}
+                      {formatDate(userUsed.dateOfBirth)}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
-                    {" "}
-                    Your account is created at{" "}
-                    <span> {formatDate(userUsed.createdAt)} </span>{" "}
+                    {' '}
+                    Your account is created at
+                    {' '}
+                    <span>
+                      {' '}
+                      {formatDate(userUsed.createdAt)}
+                      {' '}
+                    </span>
+                    {' '}
                   </p>
                 </div>
               </>
@@ -114,15 +155,12 @@ const UserInformation = ({ authUser, toggleForm }) => {
           </div>
         </div>
         <a href="/">
-          <HiArrowLeftStartOnRectangle
-            size={"3.5em"}
-            className="text-white mb-2"
-          />
+          <HiArrowLeftStartOnRectangle size="3.5em" className="text-white mb-2" />
         </a>
         <p className="text-white"> Come back to chat </p>
       </div>
     </section>
   );
-};
+}
 
 export default UserInformation;

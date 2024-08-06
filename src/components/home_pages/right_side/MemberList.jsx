@@ -1,8 +1,15 @@
-import { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { changeParticipants } from "../../../reducers/participantsReducer";
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { AiOutlineClose } from 'react-icons/ai';
+import { changeParticipants } from '../../../reducers/participantsReducer';
+import participantService from '../../../services/participants';
 
-const MemberList = ({ selectedConversation }) => {
+function MemberList({ selectedConversation, authUser }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
@@ -18,9 +25,9 @@ const MemberList = ({ selectedConversation }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -33,6 +40,29 @@ const MemberList = ({ selectedConversation }) => {
   }, [selectedConversation, dispatch]);
 
   const participants = useSelector((state) => state.participants);
+
+  const handleDeleteParticipant = (id) => {
+    try {
+      const confirmDelete = window.confirm('Are you sure you want to delete this participant?');
+      if (!confirmDelete) return;
+      if (participants.length === 3) {
+        toast.error('Group must have at least 3 participants');
+        return;
+      }
+      participantService.setToken(authUser.token);
+      participantService.deleteParticipant(id);
+      const newParticipants = participants
+        .filter((participant) => participant.participant_details.id !== id);
+      const details = dispatch(changeParticipants(newParticipants));
+      if (details.error) {
+        throw new Error(details.error);
+      } else {
+        toast.success('Participant removed successfully');
+      }
+    } catch (err) {
+      toast.error('Failed to remove participant');
+    }
+  };
 
   return (
     <div className="mt-20 w-full relative" ref={dropdownRef}>
@@ -47,32 +77,37 @@ const MemberList = ({ selectedConversation }) => {
 
       <div
         id="dropdown"
-        className={`w-full z-10 ${isOpen ? "block" : "hidden"} absolute bg-rose-300 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700`}
+        className={`w-full z-10 ${isOpen ? 'block' : 'hidden'} absolute bg-rose-300 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700`}
       >
-        <ul
-          className="w-full text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
-        >
+        <ul className="w-full text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           {participants.map((participant) => (
             <li
               key={participant.id}
               className="flex items-center px-4 py-2 hover:bg-rose-200 dark:hover:bg-gray-600 dark:hover:text-white"
             >
-              <img
-                className="w-10 h-10 rounded-full mr-2"
-                alt="Avatar"
-                src={participant.avatarName}
-              />
+              <img className="w-10 h-10 rounded-full mr-2" alt="Avatar" src={participant.avatarName} />
+
               <span className="mr-2">
-                {participant.firstName} {participant.middleName}{" "}
+                {participant.firstName}
+                {' '}
+                {participant.middleName}
+                {' '}
                 {participant.lastName}
               </span>
+
+              <button
+                onClick={() => handleDeleteParticipant(participant.participant_details.id)}
+                className="mt-1 mr-1 w-4 bg-red-500 text-white rounded-full"
+                aria-label="Delete file"
+              >
+                <AiOutlineClose />
+              </button>
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default MemberList;

@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useSocketContext } from "../context/SocketContext";
-import { useEffect } from "react";
-import { changeMessages } from "../reducers/messageReducer";
+/* eslint-disable no-unused-expressions */
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSocketContext } from '../context/SocketContext';
+import { changeMessages } from '../reducers/messageReducer';
 
 const useListenMessages = () => {
   const messages = useSelector((state) => state.messages);
@@ -9,11 +10,11 @@ const useListenMessages = () => {
   const { socket } = useSocketContext();
 
   useEffect(() => {
-    socket?.on("newMessage", (newMessage) => {
+    socket && socket.on('newMessage', (newMessage) => {
       dispatch(changeMessages([...messages, newMessage]));
     });
 
-    return () => socket?.off("newMessage");
+    return () => socket && socket.off('newMessage');
   }, [socket, dispatch, messages]);
 };
 

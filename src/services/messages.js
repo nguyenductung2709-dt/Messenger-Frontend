@@ -1,5 +1,6 @@
-import axios from "axios";
-const baseUrl = "https://messenger-server-platform.fly.dev/api/messages";
+import axios from 'axios';
+
+const baseUrl = '/api/messages';
 
 let token = null;
 
@@ -16,7 +17,7 @@ const sendMessage = async (credentials) => {
 };
 
 const getMessagesFromConversation = async (conversationId) => {
-  const getUrl = baseUrl + `/${conversationId}`;
+  const getUrl = `${baseUrl}/${conversationId}`;
   const response = await axios.get(getUrl);
   return response.data;
 };
