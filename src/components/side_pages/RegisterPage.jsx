@@ -106,7 +106,7 @@ function RegisterPage() {
           </span>
         </label>
         <div
-          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-0 sm:max-w-md xl:p-0
+          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border sm:max-w-md xl:p-0
           bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

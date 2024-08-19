@@ -6,10 +6,10 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaGoogle } from "react-icons/fa";
 import authenticationService from '../../services/authentication';
 import { useAuthContext } from '../../context/AuthContext';
 import useDarkMode from '../../hooks/useDarkMode';
-import googleButton from '../../assets/btn_google_signin_dark_pressed_web.png'
 
 function LoginPage() {
   const [loading, setLoading] = useState('');
@@ -129,17 +129,30 @@ function LoginPage() {
                 {loading ? <span className="loading loading-spinner" /> : 'Sign In'}
               </button>
 
-              <button className="btn-auth"  type="button" onClick={()=> googleAuth()}>
-                <img className="btn-auth-img" src={googleButton} alt='google sign in'/>
+              <div className = "grid grid-cols-6 gap-4">
+                <p className="col-start-1 col-span-3 text-sm font-light dark:text-gray-400 text-black">
+                  Need an account?
+                  {' '}
+                  <a href="/register" className="font-semibold hover:underline text-black dark:text-white">
+                    Sign up
+                  </a>
+                </p>
+                
+                <a href="/register" className="col-end-7 col-span-2 text-sm font-semibold hover:underline text-black dark:text-white">
+                  Forgot password
+                </a>
+              </div>
+
+              <p className="text-sm font-semibold text-black dark:text-white"> Or continue with </p>
+
+              <button
+                type="button"
+                className="w-full flex items-center justify-center focus:ring-4 bg-google_color font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
+                onClick={() => googleAuth()}
+              >
+                <FaGoogle className="mr-2" /> Sign in with Google
               </button>
 
-              <p className="text-sm font-light dark:text-gray-400 text-black">
-                Need an account?
-                {' '}
-                <a href="/register" className="font-semibold hover:underline text-black dark:text-white">
-                  Sign up
-                </a>
-              </p>
             </form>
           </div>
         </div>

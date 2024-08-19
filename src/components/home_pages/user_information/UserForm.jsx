@@ -73,7 +73,7 @@ function UserForm({ authUser, toggleForm }) {
   };
 
   return (
-    <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
+    <section className="dark:bg-primary_login_dark bg-rose-300">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-6">
         <label className="swap absolute top-10 right-40">
@@ -89,7 +89,7 @@ function UserForm({ authUser, toggleForm }) {
           </span>
         </label>
         <div
-          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border md:mt-16 sm:max-w-md xl:p-0
+          className="w-full rounded-lg shadow-2xl shadow-rose-600 dark:shadow-white border sm:max-w-md xl:p-0
           bg-rose-200 dark:bg-secondary_login_dark dark:border-gray-700 border-rose-200"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

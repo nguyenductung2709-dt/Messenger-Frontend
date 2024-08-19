@@ -14,6 +14,7 @@ export default {
         secondary_message_dark: '#282b30',
         third_message_dark: '#7289da',
         chat_background: '#3B3B3B',
+        google_color: '#DB4437',
       },
       flexBasis: {
         '1/10': '10%',
