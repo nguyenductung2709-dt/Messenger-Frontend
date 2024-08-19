@@ -69,7 +69,7 @@ function RegisterPage() {
         throw new Error(details.error);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(`The server responds with a ${error.message}`);
     } finally {
       setLoading(false);
       setGmail('');

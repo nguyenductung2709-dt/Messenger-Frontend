@@ -3,12 +3,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import authenticationService from '../../services/authentication';
 import { useAuthContext } from '../../context/AuthContext';
 import useDarkMode from '../../hooks/useDarkMode';
+import googleButton from '../../assets/btn_google_signin_dark_pressed_web.png'
 
 function LoginPage() {
   const [loading, setLoading] = useState('');
@@ -37,10 +38,10 @@ function LoginPage() {
 
     try {
       const userDetails = { gmail, password };
-      const user = await withTimeout(authenticationService.login(userDetails), 7000, 'Login timed out');
+      const user = await authenticationService.login(userDetails);
 
       if (user.error) {
-        throw new Error(user.error);
+        toast.error('Login failed. Please check your credentials');
       }
 
       setLoading(true);
@@ -48,22 +49,16 @@ function LoginPage() {
       setAuthUser(user);
     } catch (err) {
       setLoading(false);
-      toast.error(err.message || 'Login failed. Please check your credentials');
+      toast.error('Login failed. Please check your credentials');
     }
   };
 
-  function withTimeout(promise, ms, timeoutError) {
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error(timeoutError));
-      }, ms);
-
-      promise
-        .then(resolve)
-        .catch(reject)
-        .finally(() => clearTimeout(timer));
-    });
-  }
+  const googleAuth = () => {
+		window.open(
+			`http://localhost:3000/api/auth/google/callback`,
+			"_self"
+		);
+	};
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300">
@@ -132,6 +127,10 @@ function LoginPage() {
                 disabled={loading}
               >
                 {loading ? <span className="loading loading-spinner" /> : 'Sign In'}
+              </button>
+
+              <button className="btn-auth"  type="button" onClick={()=> googleAuth()}>
+                <img className="btn-auth-img" src={googleButton} alt='google sign in'/>
               </button>
 
               <p className="text-sm font-light dark:text-gray-400 text-black">

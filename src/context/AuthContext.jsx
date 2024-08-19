@@ -1,37 +1,77 @@
-import React, {
-  createContext, useContext, useState, useEffect, useMemo,
-} from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+
+import authenticationService from '../services/authentication';
 
 export const AuthContext = createContext();
 
 export const useAuthContext = () => useContext(AuthContext);
 
-// eslint-disable-next-line react/prop-types
 export function AuthContextProvider({ children }) {
-  // eslint-disable-next-line no-undef
   const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('loggedInChatUser')) || null);
   const [isTokenExpired, setIsTokenExpired] = useState(false);
 
-  useEffect(() => {
-    const token = authUser ? authUser.token : null;
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      setIsTokenExpired(Date.now() >= payload.exp * 1000);
+  const fetchUser = () => {
+    // Check if user data is available in localStorage
+    const userFromStorage = localStorage.getItem('loggedInChatUser');
+
+    if (userFromStorage) {
+      // If user data is found in localStorage, set it directly
+      setAuthUser(JSON.parse(userFromStorage));
     } else {
-      setIsTokenExpired(true); // No token found, consider it expired
+      // If no user data in localStorage, make a request to fetch user data from server
+      fetch('/api/auth/login/success')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.user) {
+            // Set user data from server response
+            setAuthUser(data.user);
+            authenticationService.setToken(data.user.token);
+            // Store it in localStorage for future use
+            localStorage.setItem('loggedInChatUser', JSON.stringify(data.user));
+          } else {
+            setAuthUser(null);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching user:', error);
+          setAuthUser(null);
+        });
     }
-  }, [authUser]); // Run this effect whenever authUser changes
-
-  const contextValue = useMemo(() => ({ authUser, setAuthUser }), [authUser, setAuthUser]);
+  };
 
   useEffect(() => {
-    // If the token is expired, clear authUser from state
+    fetchUser();
+  }, []); // No dependencies here, so fetchUser will run once when the component mounts
+
+  useEffect(() => {
+    if (!authUser || !authUser.token) {
+      setIsTokenExpired(true);
+      return;
+    }
+
+    try {
+      const payload = JSON.parse(atob(authUser.token.split('.')[1]));
+      const isExpired = Date.now() >= payload.exp * 1000;
+      setIsTokenExpired(isExpired);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      setIsTokenExpired(true);
+    }
+  }, [authUser]);
+
+  useEffect(() => {
     if (isTokenExpired) {
       setAuthUser(null);
-      // eslint-disable-next-line no-undef
       localStorage.removeItem('loggedInChatUser');
     }
   }, [isTokenExpired]);
+
+  const contextValue = useMemo(() => ({ authUser, setAuthUser }), [authUser]);
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
