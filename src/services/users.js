@@ -14,6 +14,12 @@ const getUserById = async (id) => {
   return res.data;
 };
 
+const requestEmailVerification = async (id) => {
+  const postUrl = `${baseUrl}/resend-verification-email/${id}`;
+  const res = await axios.post(postUrl);
+  return res.data;
+}
+
 const changeUserInformation = async (credentials, id) => {
   const putUrl = `${baseUrl}/${id}`;
   const config = {
@@ -23,4 +29,4 @@ const changeUserInformation = async (credentials, id) => {
   return response.data;
 };
 
-export default { getUserById, changeUserInformation, setToken };
+export default { getUserById, changeUserInformation, setToken, requestEmailVerification };

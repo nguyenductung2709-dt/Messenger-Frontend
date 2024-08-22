@@ -9,6 +9,7 @@ import useDarkMode from '../../hooks/useDarkMode';
 
 function RegisterPage() {
   const [loading, setLoading] = useState(false);
+  const [username, setUserName] = useState('');
   const [gmail, setGmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -48,13 +49,14 @@ function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const check = handleInputErrors();
     if (!check) return;
-
+  
     setLoading(true);
     try {
       const formData = new FormData();
+      formData.append('username', username);
       formData.append('gmail', gmail);
       formData.append('password', password);
       formData.append('firstName', firstName);
@@ -64,26 +66,34 @@ function RegisterPage() {
       if (avatarImage) {
         formData.append('avatarImage', avatarImage);
       }
-      const details = await authenticationService.register(formData);
-      if (details.error) {
-        throw new Error(details.error);
+      
+      const response = await authenticationService.register(formData);
+  
+      if (response.error) {
+        toast.error(response.error);
+      } else {
+        setUserName('');
+        setGmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setFirstName('');
+        setMiddleName('');
+        setLastName('');
+        setDateOfBirth('');
+        setAvatarImage(null);
+        toast.success('You have successfully created an account');
       }
     } catch (error) {
-      toast.error(`The server responds with a ${error.message}`);
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else {
+        console.log(`The server responds with a ${error.message}`);
+      }
     } finally {
       setLoading(false);
-      setGmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setFirstName('');
-      setMiddleName('');
-      setLastName('');
-      setDateOfBirth('');
-      setAvatarImage(null);
-      toast.success('You have successfully create an account');
     }
   };
-
+  
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     setAvatarImage(file);
@@ -114,6 +124,22 @@ function RegisterPage() {
               Register an account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="username" className="block mb-2 text-sm font-medium text-black dark:text-white">
+                  Your username
+                </label>
+                <input
+                  type="username"
+                  name="username"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUserName(e.target.value)}
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600
+                                    placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white"
+                  placeholder="name@company.com"
+                  required
+                />
+              </div>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-black dark:text-white">
                   Your email

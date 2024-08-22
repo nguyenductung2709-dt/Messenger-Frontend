@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/side_pages/LoginPage';
 import RegisterPage from './components/side_pages/RegisterPage';
+import EmailVerificationSuccessful from './components/side_pages/EmailVerificationSuccessful';
 import HomePage from './components/home_pages/HomePage';
 import InformationPage from './components/home_pages/user_information/InformationPage';
 import { useAuthContext } from './context/AuthContext';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={authUser ? <Navigate to="/" /> : <RegisterPage />} />
         <Route path="/register" element={authUser ? <Navigate to="/" /> : <RegisterPage />} />
         <Route path="/information" element={authUser ? <InformationPage /> : <Navigate to="/login" />} />
+        <Route path="/email-verification-success" element={<EmailVerificationSuccessful />} />
       </Routes>
     </Router>
   );

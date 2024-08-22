@@ -73,9 +73,12 @@ function UserForm({ authUser, toggleForm }) {
   };
 
   return (
-    <section className="dark:bg-primary_login_dark bg-rose-300">
+    <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-6">
+        <a className = "swap absolute top-10 left-40" href="/">
+          <HiArrowLeftStartOnRectangle size="3em"/>
+        </a>
         <label className="swap absolute top-10 right-40">
           <span
             onClick={handleMode}
@@ -206,10 +209,6 @@ function UserForm({ authUser, toggleForm }) {
             </form>
           </div>
         </div>
-        <a href="/">
-          <HiArrowLeftStartOnRectangle size="3.5em" className="text-white mt-8 mb-2" />
-        </a>
-        <p className="text-white"> Come back to chat </p>
       </div>
     </section>
   );

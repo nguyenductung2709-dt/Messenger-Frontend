@@ -3,17 +3,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import { FaGoogle } from "react-icons/fa";
+import { FaMoon, FaSun, FaGoogle } from 'react-icons/fa';
 import authenticationService from '../../services/authentication';
 import { useAuthContext } from '../../context/AuthContext';
 import useDarkMode from '../../hooks/useDarkMode';
 
 function LoginPage() {
   const [loading, setLoading] = useState('');
-  const [gmail, setGmail] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const { setAuthUser } = useAuthContext();
   const [darkTheme, setDarkTheme] = useDarkMode();
@@ -21,7 +20,7 @@ function LoginPage() {
   const handleMode = () => setDarkTheme(!darkTheme);
 
   function handleInputErrors() {
-    if (!gmail || !password) {
+    if (!username || !password) {
       toast.error('Please fill in all fields');
       return false;
     }
@@ -37,7 +36,7 @@ function LoginPage() {
     }
 
     try {
-      const userDetails = { gmail, password };
+      const userDetails = { username, password };
       const user = await authenticationService.login(userDetails);
 
       if (user.error) {
@@ -87,15 +86,15 @@ function LoginPage() {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-black dark:text-white">
-                  Your email
+                <label htmlFor="username" className="block mb-2 text-sm font-medium text-black dark:text-white">
+                  Your username
                 </label>
                 <input
-                  type="gmail"
-                  name="gmail"
-                  id="gmail"
-                  value={gmail}
-                  onChange={(e) => setGmail(e.target.value)}
+                  type="username"
+                  name="username"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUserName(e.target.value)}
                   className=" border sm:text-sm rounded-lg block w-full p-2.5 bg-white dark:bg-third_login_dark border-rose-200 dark:border-gray-600
                                     placeholder-gray-400 text-black dark:text-white focus:ring-white focus:border-white focus::bg-white"
                   placeholder="name@company.com"

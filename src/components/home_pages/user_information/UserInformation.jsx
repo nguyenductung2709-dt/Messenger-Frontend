@@ -6,6 +6,8 @@
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
 import { HiArrowLeftStartOnRectangle } from 'react-icons/hi2';
+import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
+import toast, { Toaster } from 'react-hot-toast';
 import useDarkMode from '../../../hooks/useDarkMode';
 import userService from '../../../services/users';
 
@@ -29,6 +31,19 @@ function UserInformation({ authUser, toggleForm }) {
     getUser();
   }, [authUser]);
 
+  const verifyEmail = async () => {
+    try {
+      await userService.requestEmailVerification(authUser.id);
+      toast.success('Email verification link was successfully sent to your Gmail address');
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error(`Error: ${error.message}`);
+      }
+    }
+  };
+  
   function formatDate(inputDate) {
     const date = new Date(inputDate);
 
@@ -40,8 +55,12 @@ function UserInformation({ authUser, toggleForm }) {
   }
 
   return (
-    <section className="dark:bg-primary_login_dark bg-rose-300">
+    <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a className = "swap absolute top-10 left-40" href="/">
+          <HiArrowLeftStartOnRectangle size="3em" className="mb-2" />
+        </a>
         <label className="swap absolute top-10 right-40">
           <span
             onClick={handleMode}
@@ -68,15 +87,32 @@ function UserInformation({ authUser, toggleForm }) {
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
                     {' '}
-                    Your email:
+                    Your username:
                     {' '}
                     <span>
                       {' '}
-                      {userUsed.gmail}
+                      {userUsed.username}
                       {' '}
                     </span>
                     {' '}
                   </p>
+                </div>
+                <div>
+                <p className="text-base font-medium text-black dark:text-white">
+                  Your email: {userUsed.gmail}
+                  <span className="ml-2 inline-flex items-center">
+                    {userUsed.isVerified ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+                  </span>
+                </p>
+                {!userUsed.isVerified && (
+                  <button
+                    type="button"
+                    onClick={verifyEmail}
+                    className="mt-2 px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                  >
+                    Verify your email
+                  </button>
+                )}
                 </div>
                 <div>
                   <p className="block mb-2 text-base font-medium text-black dark:text-white">
@@ -154,10 +190,6 @@ function UserInformation({ authUser, toggleForm }) {
             </button>
           </div>
         </div>
-        <a href="/">
-          <HiArrowLeftStartOnRectangle size="3.5em" className="text-white mb-2" />
-        </a>
-        <p className="text-white"> Come back to chat </p>
       </div>
     </section>
   );
