@@ -7,6 +7,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
 import { HiArrowLeftStartOnRectangle } from 'react-icons/hi2';
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
+import { Helmet } from "react-helmet";
 import toast, { Toaster } from 'react-hot-toast';
 import useDarkMode from '../../../hooks/useDarkMode';
 import userService from '../../../services/users';
@@ -56,6 +57,9 @@ function UserInformation({ authUser, toggleForm }) {
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
+      <Helmet>
+        <title>User Information</title>
+      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a className = "swap absolute top-10 left-40" href="/">

@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { HiArrowLeftStartOnRectangle } from 'react-icons/hi2';
+import { Helmet } from 'react-helmet';
 import useDarkMode from '../../../hooks/useDarkMode';
 import userService from '../../../services/users';
 
@@ -74,6 +75,9 @@ function UserForm({ authUser, toggleForm }) {
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300 h-screen">
+      <Helmet>
+        <title> Information Form </title>
+      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-6">
         <a className = "swap absolute top-10 left-40" href="/">

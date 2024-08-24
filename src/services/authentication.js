@@ -28,9 +28,23 @@ const logout = async () => {
   return response.data;
 };
 
+const requestForgotPassword = async (credentials) => {
+  const forgotPasswordUrl = `${baseUrl}/request-reset-password`;
+  const response = await axios.post(forgotPasswordUrl, credentials);
+  return response.data;
+}
+
+const resetPassword = async (credentials) => {
+  const resetPasswordUrl = `${baseUrl}/reset-password`;
+  const response = await axios.put(resetPasswordUrl, credentials);
+  return response.data;
+}
+
 export default {
   setToken,
   login,
   register,
   logout,
+  requestForgotPassword,
+  resetPassword
 };

@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FaMoon, FaSun, FaGoogle } from 'react-icons/fa';
 import authenticationService from '../../services/authentication';
 import { useAuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 import useDarkMode from '../../hooks/useDarkMode';
 
 function LoginPage() {
@@ -61,6 +62,9 @@ function LoginPage() {
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300">
+      <Helmet>
+        <title> Login </title> 
+      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <label className="swap absolute top-10 right-40">
@@ -137,7 +141,7 @@ function LoginPage() {
                   </a>
                 </p>
                 
-                <a href="/register" className="col-end-7 col-span-2 text-sm font-semibold hover:underline text-black dark:text-white">
+                <a href="/forgot-password" className="col-end-7 col-span-2 text-sm font-semibold hover:underline text-black dark:text-white">
                   Forgot password
                 </a>
               </div>

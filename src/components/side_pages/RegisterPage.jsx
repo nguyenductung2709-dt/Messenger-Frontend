@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { Helmet } from 'react-helmet';
 import authenticationService from '../../services/authentication';
 import useDarkMode from '../../hooks/useDarkMode';
 
@@ -101,6 +102,9 @@ function RegisterPage() {
 
   return (
     <section className="dark:bg-primary_login_dark bg-rose-300">
+      <Helmet>
+        <title>Sign up</title>  {/* Add Helmet to set the title */}
+      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-6">
         <label className="swap absolute top-10 right-40">

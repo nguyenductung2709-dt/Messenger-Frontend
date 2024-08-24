@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/side_pages/LoginPage';
 import RegisterPage from './components/side_pages/RegisterPage';
+import ForgotPassword from './components/side_pages/ForgotPassword';
+import ResetPasswordPage from './components/side_pages/ResetPasswordPage';
 import EmailVerificationSuccessful from './components/side_pages/EmailVerificationSuccessful';
 import HomePage from './components/home_pages/HomePage';
 import InformationPage from './components/home_pages/user_information/InformationPage';
@@ -18,6 +20,8 @@ function App() {
         <Route path="/register" element={authUser ? <Navigate to="/" /> : <RegisterPage />} />
         <Route path="/information" element={authUser ? <InformationPage /> : <Navigate to="/login" />} />
         <Route path="/email-verification-success" element={<EmailVerificationSuccessful />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
     </Router>
   );
